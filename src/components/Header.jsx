@@ -1,19 +1,73 @@
-import React from 'react'
-import Navbar  from './Navbar'
+import React, { useEffect, useState } from 'react';
+import Navbar from './Navbar';
+
+const images = [
+  '/header_img7.jpg',
+  '/header_img4.jpg',
+  '/header_img5.jpg',
+  '/header_img6.jpg',
+];
 
 const Header = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  // Automatically cycle through images every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setCurrentImage((prev) => (prev + 1) % images.length);
+        setFade(true);
+      }, 500);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleImageChange = (index) => {
+    setFade(false);
+    setTimeout(() => {
+      setCurrentImage(index);
+      setFade(true);
+    }, 300);
+  };
+
   return (
-    <div className='min-h-screen mb-4 bg-cover bg-center flex items-center w-full overflow-hidden' style={{backgroundImage:"url('/header_img.png')"}} id="Header">
-      <Navbar />
-      <div className='container text-center mx-auto py-4 px-6 md:px-20 lg:px-32 text-white'>
-        <h2 className='text-5xl sm:text-6xl md:text-[82px] inline-block max-w-3xl font-semibold pt-20'>Explore homes that fit your dreams</h2>
-        <div className='space-x-6 mt-16'>
-            <a href="#Projects" className='border border-white px-8 py-3 rounded'>Projects</a>
-            <a href="#Contact" className='bg-blue-500 px-8 py-3 rounded'>Contact Us</a>
+    <div className='min-h-screen mb-4 w-full overflow-hidden relative' id='Header'>
+      <div
+        className='absolute top-0 left-0 h-full w-full bg-cover bg-center transition-opacity duration-700 ease-in-out'
+        style={{
+          backgroundImage: `url(${images[currentImage]})`,
+          opacity: fade ? 1 : 0,
+        }}
+      ></div>
+      <div className='relative z-10'>
+        <Navbar />
+        <div className='container mx-auto py-4 px-6 md:px-20 lg:px-32 text-white flex items-center min-h-screen'>
+          <div className='bg-black bg-opacity-60 p-10 rounded-lg max-w-lg text-left'>
+            <h2 className='text-4xl sm:text-5xl md:text-6xl font-semibold pt-10'>DONATE FOR A GOOD CAUSE</h2>
+            <p className='mt-6 text-lg'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut laoreet, orci ac dapibus tempus, ex ligula ullamcorper mi, non egestas est ante eu risus.</p>
+            <div className='space-x-6 mt-10'>
+              <a href='#Projects' className='bg-red-500 px-8 py-3 rounded font-bold text-white hover:bg-red-600'>Donate now</a>
+              <a href='#Contact' className='bg-white text-black px-8 py-3 rounded font-bold hover:bg-gray-200'>Raised Funds</a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  )
-}
 
-export default Header
+      {/* Image selector */}
+      <div className='absolute bottom-5 w-full flex justify-center gap-4 z-10'>
+        {images.map((_, index) => (
+          <button
+            key={index}
+            className={`w-4 h-4 rounded-full ${currentImage === index ? 'bg-red-500' : 'bg-white'} border border-red-500 transition-all duration-300`}
+            onClick={() => handleImageChange(index)}
+          ></button>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Header;
