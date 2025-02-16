@@ -35,18 +35,21 @@ const Header = () => {
 
   return (
     <div className='min-h-screen mb-4 w-full overflow-hidden relative' id='Header'>
-      <div
-        className='absolute top-0 left-0 h-full w-full bg-cover bg-center transition-opacity duration-700 ease-in-out'
-        style={{
-          backgroundImage: `url(${images[currentImage]})`,
-          opacity: fade ? 1 : 0,
-        }}
-      ></div>
+      <div className='absolute top-0 left-0 h-full w-full'>
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`h-full w-full bg-cover bg-center absolute top-0 left-0 transition-opacity duration-2000 ease-in-out ${currentImage === index ? 'opacity-100' : 'opacity-0'}`}
+            style={{ backgroundImage: `url(${image})` }}
+          ></div>
+        ))}
+        <div className='absolute top-0 left-0 h-full w-full bg-black/50'></div>
+      </div>
       <div className='relative z-10'>
         <Navbar />
         <div className='container mx-auto py-4 px-6 md:px-20 lg:px-32 text-white flex items-center min-h-screen'>
-          <div className='bg-black bg-opacity-60 p-10 rounded-lg max-w-lg text-left'>
-            <h2 className='text-4xl sm:text-5xl md:text-6xl font-semibold pt-10'>DONATE FOR A GOOD CAUSE</h2>
+          <div className='bg-transparent p-10 rounded-lg max-w-lg text-left'>
+            <h2 className='text-4xl sm:text-5xl md:text-6xl font-semibold pt-10'>TOGETHER WE FEED THE NEED</h2>
             <p className='mt-6 text-lg'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut laoreet, orci ac dapibus tempus, ex ligula ullamcorper mi, non egestas est ante eu risus.</p>
             <div className='space-x-6 mt-10'>
               <a href='#Projects' className='bg-red-500 px-8 py-3 rounded font-bold text-white hover:bg-red-600'>Donate now</a>
@@ -57,11 +60,11 @@ const Header = () => {
       </div>
 
       {/* Image selector */}
-      <div className='absolute bottom-5 w-full flex justify-center gap-4 z-10'>
+      <div className='absolute bottom-5 left-43 flex gap-2 z-10'>
         {images.map((_, index) => (
           <button
             key={index}
-            className={`w-4 h-4 rounded-full ${currentImage === index ? 'bg-red-500' : 'bg-white'} border border-red-500 transition-all duration-300`}
+            className={`w-2 h-2 ${currentImage === index ? 'bg-red-500' : 'bg-white'} border border-red-500 transition-all duration-300`}
             onClick={() => handleImageChange(index)}
           ></button>
         ))}

@@ -18,7 +18,7 @@ useEffect(()=>{
 
 
   return (
-    <div className='absolute top-0 left-0 w-full z-10 bg-black bg-opacity-70'>
+    <div className='absolute top-0 left-0 w-full z-10 bg-transparent bg-opacity-50'>
       <div className='container mx-auto flex justify-between items-center py-4 px-6 md:px-20 lg:px-32'>
         <img src={assets.logo} alt="" />
         <ul className='hidden md:flex gap-7 text-white font-semibold'>
@@ -27,7 +27,7 @@ useEffect(()=>{
           <a href="#Projects" className='cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>Projects</a>
           <a href="#Testimonials" className='cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>Testimonials</a>
         </ul>
-        <button className='hidden md:block bg-red-500 px-6 py-2 rounded-full text-white font-semibold hover:bg-red-600 transition-all'>Donate Now</button>
+        <button className='hidden md:block bg-red-500 px-6 py-2 rounded-full text-white font-semibold hover:bg-red-600 transition-all'>Sign in/up</button>
         <img onClick={()=>setshowMobileMenu(true)} src={assets.menu_icon} className='md:hidden w-7 cursor-pointer' alt="" />
       </div>
       {/* -----------mobile-menu----------- */}
