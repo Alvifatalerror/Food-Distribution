@@ -4,4 +4,17 @@ Our platform bridges the gap between food donors, people in need, and NGOs to en
 
 ## **Features**
 
++ **Food Donor Listing **
++ **Food Request Submission **
++ **NGO Dashboard **
++ **Food Collection & Delivery **
++ **Real-time Notifications **
++ **Geo-location Mapping  **
++ **User Authentication  **
++ **Restaurant Waste Listing **
++ **Farmer Registration  **
++ **Tracking & Reporting **
++ **Awareness & Guidelines **
+
+
 
