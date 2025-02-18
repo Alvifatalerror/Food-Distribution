@@ -17,6 +17,8 @@ import profile_img_1 from "./profile_img_1.png";
 import profile_img_2 from "./profile_img_2.png";
 import profile_img_3 from "./profile_img_3.png";
 import child from "./child.jpg";
+import connect_img from "./connect_img.jpg";
+import connect_img2 from "./connect2_img.jpg";
 
 // newly added
 import volunteer_img from "./volunteer_img.jpg";
@@ -37,6 +39,8 @@ export const assets = {
   right_arrow,
   volunteer_img,
   child,
+  connect_img,
+  connect_img2,
 };
 
 export const projectsData = [
