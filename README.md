@@ -4,7 +4,7 @@ Our platform bridges the gap between food donors, people in need, and NGOs to en
 
 ## **Features**
 
-+ **Responsive design**
++ **Food Donor Listing **
 + **Customizable settings**
 + **User friendly approach**
 + **Interactive content**
