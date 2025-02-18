@@ -3,7 +3,8 @@ import { assets } from '../assets/assets';
 
 const About = () => {
   return (
-    <div className='relative flex flex-col items-center justify-center container mx-auto p-14 md:px-20 lg:px-32 w-full overflow-hidden bg-gray-900' id='About'>
+    <div className='relative flex flex-col items-center justify-center container mx-auto p-14 md:px-20 lg:px-32 w-full overflow-hidden bg-gray-900 -mt-1' id='About'>
+
 
       {/* Layered Background with Gradients and Depth */}
       <div className='absolute inset-0 z-0'>
