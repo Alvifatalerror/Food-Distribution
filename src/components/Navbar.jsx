@@ -20,7 +20,7 @@ useEffect(()=>{
   return (
     <div className='absolute top-0 left-0 w-full z-10 bg-transparent bg-opacity-50'>
       <div className='container mx-auto flex justify-between items-center py-4 px-6 md:px-20 lg:px-32'>
-        <img src={assets.logo} alt="" />
+        <img src={assets.logo} alt="" className='w-3xs'/>
         <ul className='hidden md:flex gap-7 text-white font-semibold'>
           <a href="#Header" className='cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>Home</a>
           <a href="#About" className='cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>About</a>
