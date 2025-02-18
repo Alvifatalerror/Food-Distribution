@@ -1,74 +1,61 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 
-export default function AuthComponent() {
+const AuthForm = () => {
   const [isSignUp, setIsSignUp] = useState(false);
 
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="relative w-[800px] h-[500px] bg-white shadow-2xl overflow-hidden rounded-xl flex">
-        {/* Left Side - Red Background (Sign In) */}
-        <div className="w-1/2 bg-red-500 text-white flex flex-col justify-center items-center transition-all duration-700 ease-in-out">
-          {!isSignUp ? (
-            <>
-              <h2 className="text-3xl font-bold">Sign In</h2>
-              <input type="text" placeholder="Email" className="mt-4 p-2 border rounded w-3/4 text-gray-900" />
-              <input type="password" placeholder="Password" className="mt-2 p-2 border rounded w-3/4 text-gray-900" />
-              <button className="mt-4 px-6 py-2 bg-white text-red-500 rounded">Sign In</button>
-              <p className="mt-4">
-                Don't have an account?{" "}
-                <button onClick={() => setIsSignUp(true)} className="text-white font-semibold underline">
-                  Sign Up
-                </button>
-              </p>
-            </>
-          ) : (
-            <>
-              <h2 className="text-3xl font-bold">Welcome Back!</h2>
-              <p className="mt-4 text-center w-3/4">
-                Enter your personal details and start your journey with us.
-              </p>
-              <button
-                onClick={() => setIsSignUp(false)}
-                className="mt-6 px-6 py-2 bg-transparent border border-white rounded-full hover:bg-white hover:text-red-500 transition"
-              >
-                Sign In
-              </button>
-            </>
-          )}
-        </div>
+  const handleSignUpClick = () => {
+    setIsSignUp(true);
+  };
 
-        {/* Right Side - White Background (Sign Up) */}
-        <div className="w-1/2 bg-white text-gray-800 flex flex-col justify-center items-center transition-all duration-700 ease-in-out">
-          {isSignUp ? (
-            <>
-              <h2 className="text-3xl font-bold">Sign Up</h2>
-              <input type="text" placeholder="Name" className="mt-4 p-2 border rounded w-3/4" />
-              <input type="text" placeholder="Email" className="mt-2 p-2 border rounded w-3/4" />
-              <input type="password" placeholder="Password" className="mt-2 p-2 border rounded w-3/4" />
-              <button className="mt-4 px-6 py-2 bg-green-500 text-white rounded">Sign Up</button>
-              <p className="mt-4">
-                Already have an account?{" "}
-                <button onClick={() => setIsSignUp(false)} className="text-blue-500 font-semibold">
-                  Sign In
-                </button>
-              </p>
-            </>
-          ) : (
-            <>
-              <h2 className="text-3xl font-bold text-gray-800">Hello, Friends!</h2>
-              <p className="mt-4 text-center w-3/4">
-                Enter your personal details and start your journey with us.
-              </p>
-              <button
-                onClick={() => setIsSignUp(true)}
-                className="mt-6 px-6 py-2 bg-blue-500 text-white rounded"
-              >
-                Sign Up
-              </button>
-            </>
-          )}
-        </div>
+  const handleLoginClick = () => {
+    setIsSignUp(false);
+  };
+
+  return (
+    <div className="bg-gradient-to-r from-blue-50 to-purple-50 h-screen flex items-center justify-center"> {/* Gradient background */}
+      <div className="bg-white p-10 rounded-2xl shadow-lg w-96 transition duration-300 ease-in-out hover:scale-105"> {/* Increased padding, rounded corners, shadow, hover effect */}
+        {isSignUp ? (
+          <div>
+            <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Create Account</h2> {/* Improved heading style */}
+            <form className="space-y-4"> {/* Added spacing between form elements */}
+              <input type="text" placeholder="Username" className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" /> {/* Improved input styling */}
+              <input type="email" placeholder="Email" className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" />
+              <input type="password" placeholder="Password" className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" />
+              <input type="password" placeholder="Confirm Password" className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" />
+
+              <select className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700">
+                <option>Ngo</option>
+                <option>oxxx</option>
+                <option>yyyy</option>
+              </select>
+
+              <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-300">Sign Up</button> {/* Improved button styling and transition */}
+            </form>
+            <p className="mt-6 text-center text-gray-600">Already have an account? <a href="#" onClick={handleLoginClick} className="text-blue-600 hover:underline transition duration-300">Login</a></p> {/* Improved text styling and transition */}
+          </div>
+        ) : (
+          <div>
+            <h2 className="text-3xl font-bold mb-4 text-center text-gray-800">Welcome Back!</h2> {/* Improved heading style */}
+            <p className="text-gray-600 mb-8 text-center">Sign in to your account.</p> {/* Increased margin bottom */}
+            <form className="space-y-4"> {/* Added spacing between form elements */}
+              <input type="text" placeholder="User ID" className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" /> {/* Improved input styling */}
+              <input type="password" placeholder="Password" className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" />
+              <div className="mb-6 flex items-center"> {/* Increased margin bottom */}
+                <input type="checkbox" id="remember" className="mr-2 accent-blue-500" /> {/* Added accent color to checkbox */}
+                <label htmlFor="remember" className="text-gray-700">Remember for 30 days</label>
+              </div>
+              <a href="#" className="text-blue-600 hover:underline block mb-6 text-center transition duration-300">Forgot Password?</a> {/* Improved text styling and transition */}
+              <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-300">Login</button> {/* Improved button styling and transition */}
+            </form>
+            <div className="mt-6"> {/* Added margin top */}
+              <button className="w-full bg-white border border-gray-300 text-gray-700 py-3 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300">Sign in with Google</button> {/* Improved button styling and transition */}
+            </div>
+            <p className="mt-6 text-center text-gray-600">Don't have an account? <a href="#" onClick={handleSignUpClick} className="text-blue-600 hover:underline transition duration-300">Sign Up</a></p> {/* Improved text styling and transition */}
+          </div>
+        )}
       </div>
     </div>
   );
-}
+};
+
+export default AuthForm;
