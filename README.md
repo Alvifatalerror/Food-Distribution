@@ -30,3 +30,22 @@ Our platform bridges the gap between food donors, people in need, and NGOs to en
 - Gamification & Rewards 
 - Live Tracking of Food Distribution
 
+## **Contributing**
+
+*We welcome contributions to improve this website! If you'd like to collaborate:*
+
+1. Fork the repository
+   
+2. Create a new branch:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add feature-name"
+   ```
+4. Push the branch:
+   ```bash
+   git push origin feature-name
+   ```
+5. Open a pull request on GitHub.
