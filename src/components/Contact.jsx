@@ -39,7 +39,7 @@ const Contact = () => {
 
       <div className='md:flex  justify-around'>
         <div className='hidden md:block w-1/3'>
-          <img src={assets.volunteer_img} alt="" className='w-80 rounded-full'/>
+          <img src={assets.volunteer_img} alt="" className='w-80 w-full rounded-md'/>
         </div>
         <div>
           <form onSubmit={onSubmit} className='max-w-2xl mx-auto text-gray-600 pt-8 '>
@@ -69,10 +69,6 @@ const Contact = () => {
           </form>
         </div>
       </div>
-
-
-      
-      
     </div>
   )
 }

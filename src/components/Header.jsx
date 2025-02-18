@@ -60,7 +60,7 @@ const Header = () => {
       </div>
 
       {/* Image selector */}
-      <div className='absolute bottom-5 left-43 flex gap-2 z-10'>
+      <div className='absolute bottom-5 left-43 flex gap-2 z-10 '>
         {images.map((_, index) => (
           <button
             key={index}
