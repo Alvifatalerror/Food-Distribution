@@ -4,11 +4,19 @@ Our platform bridges the gap between food donors, people in need, and NGOs to en
 
 ## **Features**
 
-+ **Food Donor Listing **
-+ **Customizable settings**
-+ **User friendly approach**
-+ **Interactive content**
-+ **Exclusive data on PACE technologies**
++ **Food Donor Listing**
++ **Food Request Submission**
++ **NGO Dashboard**
++ **Food Collection & Delivery**
++ **Real-time Notifications**
++ **Geo-location Mapping**
++ **User Authentication**
++ **Restaurant Waste Listing**
++ **Farmer Registration**
++ **Automated Matching**
++ **Tracking & Reporting**
++ **Awareness & Guidelines**
+  
 
 
 ## **Future Enhancements**
