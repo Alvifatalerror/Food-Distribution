@@ -95,4 +95,4 @@ For any questions or feedback, feel free to reach out:
   > Anagha Sunny: anaghasunny2@gmail.com
 
  
-- **Via GitHub**: [Shaun MR](https://github.com/shaun099), [Albin Sunny](https://github.com/001Albin), [Adithyan S Nair](https://github.com/Adithyan-S-Nair),[Dayona Suby](https://github.com/dayonasuby),[Riya Benny](https://github.com/Riyabenny05),[Anagha Sunny](https://github.com/AnaghaSunny2)
+- **Via GitHub**: [Shaun MR](https://github.com/shaun099), [Albin Sunny](https://github.com/001Albin), [Adithyan S Nair](https://github.com/Adithyan-S-Nair), [Dayona Suby](https://github.com/dayonasuby), [Riya Benny](https://github.com/Riyabenny05), [Anagha Sunny](https://github.com/AnaghaSunny2)
