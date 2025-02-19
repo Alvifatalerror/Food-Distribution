@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
+import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword } from 'firebase/auth';
+import { getFirestore,doc,setDoc } from 'firebase/firestore';
+import {app} from '../firebaseConfig'
+import { Link } from 'react-router-dom';
+
+const auth = getAuth(app);
+const db = getFirestore(app);
 
 const AuthForm = () => {
+
   const [isSignUp, setIsSignUp] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [userName,setuserName] = useState("");
+  const [organization, setOrganization] = useState("Ngo");
 
   const handleSignUpClick = () => {
     setIsSignUp(true);
@@ -11,19 +24,54 @@ const AuthForm = () => {
     setIsSignUp(false);
   };
 
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      
+      await setDoc(doc(db, "users", user.uid), {
+        userId: user.uid,
+        email: user.email,
+        userName : userName,
+        organization: organization,
+      });
+
+      alert("User registered successfully!");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      alert("Login successful!");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+
+
   return (
     <div className="bg-gradient-to-r from-blue-50 to-purple-50 h-screen flex items-center justify-center"> {/* Gradient background */}
       <div className="bg-white p-10 rounded-2xl shadow-lg w-96 transition duration-300 ease-in-out hover:scale-105"> {/* Increased padding, rounded corners, shadow, hover effect */}
         {isSignUp ? (
           <div>
             <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Create Account</h2> {/* Improved heading style */}
-            <form className="space-y-4"> {/* Added spacing between form elements */}
-              <input type="text" placeholder="Username" className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" /> {/* Improved input styling */}
-              <input type="email" placeholder="Email" className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" />
-              <input type="password" placeholder="Password" className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" />
-              <input type="password" placeholder="Confirm Password" className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" />
+            <form className="space-y-4" onSubmit={handleSignUp}> {/* Added spacing between form elements */}
+              <input type="text" placeholder="Username" value={userName} onChange={(e) =>setuserName(e.target.value)} className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" /> {/* Improved input styling */}
+              <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" />
+              <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" />
+              <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}  className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" />
 
-              <select className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700">
+              <select value={organization} onChange={(e) => setOrganization(e.target.value)} className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700">
                 <option>Ngo</option>
                 <option>oxxx</option>
                 <option>yyyy</option>
@@ -37,9 +85,9 @@ const AuthForm = () => {
           <div>
             <h2 className="text-3xl font-bold mb-4 text-center text-gray-800">Welcome Back!</h2> {/* Improved heading style */}
             <p className="text-gray-600 mb-8 text-center">Sign in to your account.</p> {/* Increased margin bottom */}
-            <form className="space-y-4"> {/* Added spacing between form elements */}
-              <input type="text" placeholder="User ID" className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" /> {/* Improved input styling */}
-              <input type="password" placeholder="Password" className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" />
+            <form className="space-y-4" onSubmit={handleLogin}> {/* Added spacing between form elements */}
+              <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" /> {/* Improved input styling */}
+              <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" />
               <div className="mb-6 flex items-center"> {/* Increased margin bottom */}
                 <input type="checkbox" id="remember" className="mr-2 accent-blue-500" /> {/* Added accent color to checkbox */}
                 <label htmlFor="remember" className="text-gray-700">Remember for 30 days</label>
