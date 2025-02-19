@@ -34,7 +34,8 @@ const Header = () => {
   };
 
   return (
-    <div className='min-h-screen mb-4 w-full overflow-hidden relative' id='Header'>
+    <div className='min-h-screen w-full overflow-hidden relative' id='Header'>
+
       <div className='absolute top-0 left-0 h-full w-full'>
         {images.map((image, index) => (
           <div
@@ -51,7 +52,7 @@ const Header = () => {
           <div className='bg-transparent p-10 rounded-lg max-w-lg text-left'>
             <h2 className='text-4xl sm:text-5xl md:text-6xl font-semibold pt-10'>TOGETHER WE FEED THE NEED</h2>
             <p className='mt-6 text-lg'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut laoreet, orci ac dapibus tempus, ex ligula ullamcorper mi, non egestas est ante eu risus.</p>
-            <div className='space-x-6 mt-10'>
+            <div className='space-x-6 mt-10 flex'>
               <a href='#Projects' className='bg-red-500 px-8 py-3 rounded font-bold text-white hover:bg-red-600'>Donate now</a>
               <a href='#Contact' className='bg-white text-black px-8 py-3 rounded font-bold hover:bg-gray-200'>Raised Funds</a>
             </div>

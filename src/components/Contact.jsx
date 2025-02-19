@@ -31,18 +31,22 @@ const Contact = () => {
     }
   };
   return (
-    <div className='text-center p-6 py-20 lg:px-32 w-full overflow-hidden' id='Contact'>
-         <h1 className='text-2xl sm:text-4xl font-bold mb-2 text-center'>Contact
-        <span className='underline underline-offset-4 decoration-1 under font-light ml-1'>With Us</span></h1>
-      <p className='text-center text-gray-500 mb-12 max-w-80 mx-auto'>Ready to Make a Move? Let's Build Future Together</p>
+    <div className='relative text-center p-6 py-20 lg:px-32 w-full overflow-hidden' id='Contact' style={{ backgroundImage: `url(${assets.connect_img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      {/* Black Tint Overlay */}
+  <div className="absolute inset-0 bg-black opacity-50"></div>
+  <div className='relative z-20'>
+         <h1 className='text-2xl sm:text-4xl font-bold mb-2 text-center text-white'>Connect
+        <span className='underline underline-offset-4 decoration-1 under font-light ml-3'>With Us</span></h1>
+      <p className='text-center text-gray-200 mb-12 max-w-80 mx-auto'>Ready to Make a Move? Let's Build Future Together</p>
 
 
-      <div className='md:flex  justify-around'>
+      
+      <div className='justify-around' >
         <div className='hidden md:block w-1/3'>
-          <img src={assets.volunteer_img} alt="" className='w-80 w-full rounded-md'/>
+          {/* <img src={assets.volunteer_img} alt="" className='w-full rounded-md'/> */}
         </div>
         <div>
-          <form onSubmit={onSubmit} className='max-w-2xl mx-auto text-gray-600 pt-8 '>
+          <form onSubmit={onSubmit} className='max-w-2xl mx-auto text-gray-200 pt-8 '>
             <div className='flex flex-wrap'>
                 <div className='w-full md:w-1/2 text-left'>
                    Your Name
@@ -68,6 +72,7 @@ const Contact = () => {
               <button className='bg-blue-600 text-white py-2 px-12 mb-10 rounded'>{result ? result : "Send Message"}</button>
           </form>
         </div>
+      </div>
       </div>
     </div>
   )

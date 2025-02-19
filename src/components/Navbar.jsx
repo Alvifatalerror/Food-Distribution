@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import {assets} from "../assets/assets"
 
+import { useNavigate } from 'react-router-dom';
+
 const Navbar = () => {
+  const navigate = useNavigate();
   const [showMobileMenu,setshowMobileMenu] = useState(false)
 
 
@@ -27,7 +30,7 @@ useEffect(()=>{
           <a href="#Projects" className='cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>Projects</a>
           <a href="#Testimonials" className='cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>Testimonials</a>
         </ul>
-        <button className='hidden md:block bg-red-500 px-6 py-2 rounded-full text-white font-semibold hover:bg-red-600 transition-all'>Sign in/up</button>
+        <button className='hidden md:block bg-red-500 px-6 py-2 rounded-full text-white font-semibold hover:bg-red-600 transition-all' onClick={() => navigate('/auth')}>Sign in/up</button>
         <img onClick={()=>setshowMobileMenu(true)} src={assets.menu_icon} className='md:hidden w-7 cursor-pointer' alt="" />
       </div>
       {/* -----------mobile-menu----------- */}
