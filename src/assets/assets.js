@@ -1,5 +1,3 @@
-
-
 // import project_img_1 from "./project_img_1.jpg";
 // import project_img_2 from "./project_img_2.jpg";
 // import project_img_3 from "./project_img_3.jpg";
@@ -9,7 +7,6 @@
 // import profile_img_1 from "./profile_img_1.png";
 // import profile_img_2 from "./profile_img_2.png";
 // import profile_img_3 from "./profile_img_3.png";
-
 
 // newly added
 import volunteer_img from "./volunteer_img.jpg";
@@ -23,15 +20,18 @@ import menu_icon from "./menu_icon.svg";
 import star_icon from "./star_icon.svg";
 import left_arrow from "./left_arrow.svg";
 import right_arrow from "./right_arrow.svg";
-import header_img from "./header_img.png";
+import Heartflet from "./Heartflet.jpg";
+import Blue_Oasis from "./Blue_Oasis.jpg";
+import Nest from "./Nest.jpg";
+import Nurture from "./Nurture.jpg";
+import Soar from "./Soar.jpg";
+import Seed_And_Sprout from "./Seed_And_Sprout.jpg";
 
 export const assets = {
   logo,
-  logo_dark,
   cross_icon,
   menu_icon,
   star_icon,
-  header_img,
   left_arrow,
   right_arrow,
   volunteer_img,
@@ -39,44 +39,46 @@ export const assets = {
   connect_img,
   connect_img2,
   background,
+
+  Heartflet,
+  Blue_Oasis,
+  Nest,
+  Nurture,
+  Soar,
+  Seed_And_Sprout,
 };
 
 export const projectsData = [
   {
-    title: "Skyline Haven",
-    price: "$2,50,000",
-    location: "California",
-    // image: project_img_1,
+    title: "Heartflet",
+    location: "Kochi",
+    image: Heartflet,
   },
   {
-    title: "Vista Verde",
-    price: "$2,50,000",
-    location: "San Francisco",
-    // image: project_img_2,
+    title: "Soar",
+    location: "Mumbai",
+    image: Soar,
+  },
+
+  {
+    title: "Nest",
+    location: "Delhi",
+    image: Nest,
   },
   {
-    title: "Serenity Suites",
-    price: "$2,50,000",
-    location: "Chicago",
-    // image: project_img_3,
+    title: "Nurture",
+    location: "Whitefield",
+    image: Nurture,
   },
   {
-    title: "Central Square",
-    price: "$2,50,000",
-    location: "Los Angeles",
-    // image: project_img_4,
+    title: "Blue_Oasis",
+    location: "Bengluru",
+    image: Blue_Oasis,
   },
   {
-    title: "Vista Verde",
-    price: "$2,50,000",
-    location: "San Francisco",
-    // image: project_img_5,
-  },
-  {
-    title: "Serenity Suites",
-    price: "$2,50,000",
-    location: "Chicago",
-    // image: project_img_6,
+    title: " Seed_And_Sprout",
+    location: "Trivandrum",
+    image: Seed_And_Sprout,
   },
 ];
 
