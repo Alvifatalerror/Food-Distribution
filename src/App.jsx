@@ -6,6 +6,10 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import AuthForm from './components/AuthForm';
+import Dashboard from './components/Dashboard';
+
+
+
 
 const App = () => {
   return (
@@ -28,6 +32,7 @@ const App = () => {
         
         {/* Auth Page (Login/Signup) - Only this component is shown */}
         <Route path="/auth" element={<AuthForm />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
   );

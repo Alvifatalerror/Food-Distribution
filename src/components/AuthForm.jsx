@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore,doc,setDoc } from 'firebase/firestore';
-import {app} from '../firebaseConfig'
+import {app} from '../firebaseConfig';
 import { Link } from 'react-router-dom';
 
 const auth = getAuth(app);
 const db = getFirestore(app);
 
 const AuthForm = () => {
+  const navigate = useNavigate();
 
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState("");
@@ -42,6 +44,7 @@ const AuthForm = () => {
       });
 
       alert("User registered successfully!");
+      navigate("/dashboard");
     } catch (error) {
       alert(error.message);
     }
@@ -52,6 +55,7 @@ const AuthForm = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       alert("Login successful!");
+      navigate("/dashboard");
     } catch (error) {
       alert(error.message);
     }
