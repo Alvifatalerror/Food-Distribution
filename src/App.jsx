@@ -9,8 +9,6 @@ import AuthForm from './components/AuthForm';
 import Dashboard from './components/Dashboard';
 
 
-
-
 const App = () => {
   return (
     <Router>
@@ -22,14 +20,12 @@ const App = () => {
             <>
               <Header />
               <About />
-              <Projects />
-              
+              <Projects  />
               <Contact />
               <Footer />
             </>
           } 
         />
-        
         {/* Auth Page (Login/Signup) - Only this component is shown */}
         <Route path="/auth" element={<AuthForm />} />
         <Route path="/dashboard" element={<Dashboard />} />
