@@ -85,7 +85,7 @@ const Dashboard = () => {
               onClick={() => handleViewChange('donators')}
               className="w-full text-left p-2 rounded transition duration-300 font-medium text-gray-700 hover:bg-gray-100 hover:text-green-500"
             >
-              View Donators List
+              View Donations
             </button>
           </li>
           <li className="mb-2">
@@ -93,7 +93,7 @@ const Dashboard = () => {
               onClick={() => handleViewChange('requesters')}
               className="w-full text-left p-2 rounded transition duration-300 font-medium text-gray-700 hover:bg-gray-100 hover:text-green-500"
             >
-              View Requesters List
+              View Requests 
             </button>
           </li>
           <li className="mb-2">
