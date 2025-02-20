@@ -77,7 +77,7 @@ const Projects = () => {
   }
 
   return (
-    <div className="container mx-auto px-8 py-16 bg-gradient-to-r from-white to-blue-50 rounded-lg shadow-lg">
+    <div className="overflow-x-hidden container mx-auto px-8 py-16 bg-gradient-to-r from-white to-blue-50 rounded-lg shadow-lg">
       {/* Header Section */}
       <div className="text-center mb-16">
         <h2 className="text-5xl font-extrabold mb-4">
@@ -116,7 +116,7 @@ const Projects = () => {
                   </h3>
                   <div className="flex justify-between items-center">
                     <span className="text-green-600 font-semibold">
-                      ${project.price}
+                      {project.price}
                     </span>
                     <span className="text-blue-600 font-semibold">
                       {project.location}
