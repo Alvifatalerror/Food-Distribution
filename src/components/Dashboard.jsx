@@ -3,12 +3,8 @@ import React, { useState } from 'react';
 const Dashboard = () => {
   const [activeView, setActiveView] = useState('overview');
   const [donators, setDonators] = useState([
-    { id: 1, name: "John Doe", location: "New York", email: "john.doe@example.com", timePeriod: "Jan 2024 - Dec 2024", description: "A generous donor." },
-    { id: 2, name: "Jane Smith", location: "London", email: "jane.smith@example.com", timePeriod: "Feb 2024 - Nov 2024", description: "Passionate about education." }
   ]);
   const [requesters, setRequesters] = useState([
-    { id: 3, name: "ABC Orphanage", location: "Mumbai", email: "abc@example.com", timePeriod: "Ongoing", description: "Needs books and supplies." },
-    { id: 4, name: "XYZ School", location: "Delhi", email: "xyz@example.com", timePeriod: "Ongoing", description: "Seeking sports equipment." }
   ]);
   const [formData, setFormData] = useState({
     name: '',
@@ -31,9 +27,36 @@ const Dashboard = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Here you would typically send the formData to your backend
+  
+    const newEntry = {
+      id: Date.now(), // Unique ID
+      name: formData.name,
+      email: formData.email,
+      location: formData.location,
+      timePeriod: formData.timePeriod,
+      description: formData.description,
+    };
+  
+    if (activeView === 'addDonation') {
+      setDonators([...donators, newEntry]); // Add to donators list
+    } else if (activeView === 'addRequest') {
+      setRequesters([...requesters, newEntry]); // Add to requesters list
+    }
+  
+    // Reset the form
+    setFormData({
+      name: '',
+      email: '',
+      location: '',
+      timePeriod: '',
+      description: '',
+      category: '',
+    });
+  
+    // Navigate back to view list
+    setActiveView(activeView === 'addDonation' ? 'donators' : 'requesters');
   };
+  
 
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
@@ -45,12 +68,12 @@ const Dashboard = () => {
       <div
         className={`w-64 bg-white p-4 shadow-md transition-transform duration-300 md:block ${
           isSidebarVisible ? 'translate-x-0' : '-translate-x-full'
-        } fixed top-0 left-0 h-full z-10 flex flex-col md:translate-x-0`}
+        } fixed top-0 left-0 h-full z-10 flex flex-col md:translate-x-0 z-30`}
       >
         {/* Mobile close button */}
         <button
           onClick={toggleSidebar}
-          className="md:hidden absolute top-2 right-2 z-20 p-1"
+          className="md:hidden absolute top-5 right-2 z-20 p-1 bg-gray-100 rounded-xl"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +91,7 @@ const Dashboard = () => {
           </svg>
         </button>
 
-        <h2 className="text-2xl font-bold mb-6 text-green-500 text-center">
+        <h2 className="text-2xl font-bold mb-6 text-green-500 text-left">
           Deep Park South
         </h2>
         <ul className="flex-grow">
@@ -121,15 +144,17 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-6 overflow-y-auto bg-white md:ml-64"> {/* Added md:ml-64 */}
+      <div className="flex-1 p-6 overflow-y-auto bg-white md:ml-64 "> {/* Added md:ml-64 */}
         {/* Mobile menu icon (smaller icon) */}
         <button
           onClick={toggleSidebar}
-          className="md:hidden fixed top-2 left-2 z-20"
+          className="md:hidden fixed top-9 left-5 z-10"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-4 w-4"
+            width="24"
+            height="24"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -139,7 +164,7 @@ const Dashboard = () => {
         </button>
 
         <div className="flex justify-between items-center mb-6">
-          <div className="relative w-80">
+          <div className="relative w-80 md:w-100  pl-7">
             <input
               type="text"
               placeholder="Search Location"
@@ -148,13 +173,10 @@ const Dashboard = () => {
           </div>
           <div className="flex items-center space-x-4">
             <a href="#" className="relative hover:text-gray-600 transition duration-300">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.657V5a2 2 0 10-4 0v.343C7.67 6.165 6 8.388 6 11v3.158c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-              </svg>
-              <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">3</span>
+      
             </a>
-            <button className="hover:bg-gray-200 p-2 rounded-full transition duration-300 flex items-center justify-center w-8 h-8">
-              <span className="text-gray-700 font-medium">JD</span>
+            <button className="hover:bg-gray-200 p-2 rounded-full transition duration-300 flex items-center justify-center w-13 h-13">
+              <span className="text-gray-700 font-medium text-2xl">JD</span>
             </button>
           </div>
         </div>
