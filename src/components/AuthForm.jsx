@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup, } from 'firebase/auth';
 import { getFirestore,doc,setDoc } from 'firebase/firestore';
 import {app} from '../firebaseConfig';
 import { Link } from 'react-router-dom';
@@ -61,6 +61,31 @@ const AuthForm = () => {
     }
   };
 
+  const handleGoogleSignIn = async (e) =>{
+    e.preventDefault();
+    const provider = new GoogleAuthProvider();
+    try{
+      const result = await signInWithPopup(auth, provider); 
+      const user = result.user;
+
+      const userDocRef = doc(db, "users", user.uid);
+      const userDocSnapshot = await getDoc(userDocRef);
+
+      if (!userDocSnapshot.exists()) {
+        // If user doesn't exist, create a new document
+        await setDoc(userDocRef, {
+            userId: user.uid,
+            email: user.email,
+            userName: user.displayName || "User", // Use display name or default
+            organization: "Ngo", // Default organization
+        });
+    }
+    navigate("/dashboard");
+    }catch(error){
+      alert(error.message);
+    }
+  };
+
 
 
   return (
@@ -100,7 +125,7 @@ const AuthForm = () => {
               <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-300">Login</button> {/* Improved button styling and transition */}
             </form>
             <div className="mt-6"> {/* Added margin top */}
-              <button className="w-full bg-white border border-gray-300 text-gray-700 py-3 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300">Sign in with Google</button> {/* Improved button styling and transition */}
+              <button onClick={handleGoogleSignIn} className="w-full bg-white border border-gray-300 text-gray-700 py-3 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-300 transition duration-300" >Sign in with Google</button> {/* Improved button styling and transition */}
             </div>
             <p className="mt-6 text-center text-gray-600">Don't have an account? <a href="#" onClick={handleSignUpClick} className="text-blue-600 hover:underline transition duration-300">Sign Up</a></p> {/* Improved text styling and transition */}
           </div>
