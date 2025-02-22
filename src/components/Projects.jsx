@@ -75,9 +75,9 @@ const Projects = () => {
   }
 
   return (
-    <div className="overflow-x-hidden w-screen min-h-[500px] bg-gray-900 px-8 py-16 rounded-lg shadow-lg">
+    <div className="overflow-x-hidden w-full min-h-[500px] bg-gray-900 px-8 py-16  shadow-lg">
       <div className="text-center mb-16">
-        <h2 className="text-5xl  mb-4 text-white">
+        <h2 className="text-5xl mb-4 text-white">
           <span className="font-extrabold">TOGETHER</span>,
           <span className="italic underline">We Make a Difference</span>
         </h2>
