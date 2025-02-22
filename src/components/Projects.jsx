@@ -102,9 +102,9 @@ const Projects = () => {
                 index === projectsData.length - 1 ? "opacity-100" : "opacity-75"
               }`}
             >
-              <div className="relative group w-64 h-64 mx-auto">
+              <div className="relative group w-64 h-64 mx-auto floating-card">
                 {/* Base Layer (Shadow Layer) */}
-                <div className="absolute inset-0 bg-white rounded-full shadow-lg shadow-[0_4px_14px_rgba(99,102,241,0.5)] transform group-hover:scale-105 transition-transform duration-300 z-10 group-hover:shadow-[0_8px_24px_rgba(99,102,241,0.7)]"></div>
+                <div className="absolute inset-0 bg-white rounded-full shadow-lg shadow-[0_4px_14px_rgba(255,0,0,0.5)] transform group-hover:scale-105 transition-transform duration-300 z-10 group-hover:shadow-[0_8px_24px_rgba(255,0,0,0.7)]"></div>
 
                 {/* Glass Layer */}
                 <div className="absolute inset-0 bg-white/20 backdrop-blur-md rounded-full border-2 border-white/10 z-20"></div>
@@ -124,7 +124,7 @@ const Projects = () => {
                       <span className="text-green-600 font-semibold">
                         {project.price}
                       </span>
-                      <span className="text-blue-600 font-semibold ml-2">
+                      <span className="text-red-600 font-semibold ml-2">
                         {project.location}
                       </span>
                     </div>
