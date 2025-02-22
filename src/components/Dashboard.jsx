@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { db, collection, addDoc, onSnapshot, doc, deleteDoc } from "../firebaseConfig";
 
 const Dashboard = () => {
+  const API_KEY = import.meta.env.VITE_BREVO_API_KEY;
   const [activeView, setActiveView] = useState('overview');
-  const [donators, setDonators] = useState([
-  ]);
-  const [requesters, setRequesters] = useState([
-  ]);
+  const [donators, setDonators] = useState([]);
+  const [requesters, setRequesters] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -16,6 +16,24 @@ const Dashboard = () => {
   });
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
+  // Fetch real-time data from Firestore
+  useEffect(() => {
+    const unsubscribeDonations = onSnapshot(collection(db, 'donations'), (snapshot) => {
+      const donationsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setDonators(donationsData);
+    });
+
+    const unsubscribeRequests = onSnapshot(collection(db, 'requests'), (snapshot) => {
+      const requestsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setRequesters(requestsData);
+    });
+
+    return () => {
+      unsubscribeDonations();
+      unsubscribeRequests();
+    };
+  }, []);
+
   const handleViewChange = (view) => {
     setActiveView(view);
     setIsSidebarVisible(false); // Close sidebar on selection (mobile)
@@ -25,38 +43,100 @@ const Dashboard = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const newEntry = {
-      id: Date.now(), // Unique ID
       name: formData.name,
       email: formData.email,
       location: formData.location,
       timePeriod: formData.timePeriod,
       description: formData.description,
+      category: formData.category,
     };
-  
-    if (activeView === 'addDonation') {
-      setDonators([...donators, newEntry]); // Add to donators list
-    } else if (activeView === 'addRequest') {
-      setRequesters([...requesters, newEntry]); // Add to requesters list
+
+    try {
+      if (activeView === 'addDonation') {
+        await addDoc(collection(db, 'donations'), newEntry); // Save to 'donations' collection
+      } else if (activeView === 'addRequest') {
+        await addDoc(collection(db, 'requests'), newEntry); // Save to 'requests' collection
+      }
+
+      // Reset the form
+      setFormData({
+        name: '',
+        email: '',
+        location: '',
+        timePeriod: '',
+        description: '',
+        category: '',
+      });
+
+      // Navigate back to view list
+      setActiveView(activeView === 'addDonation' ? 'donators' : 'requesters');
+    } catch (error) {
+      console.error('Error saving data:', error);
     }
-  
-    // Reset the form
-    setFormData({
-      name: '',
-      email: '',
-      location: '',
-      timePeriod: '',
-      description: '',
-      category: '',
-    });
-  
-    // Navigate back to view list
-    setActiveView(activeView === 'addDonation' ? 'donators' : 'requesters');
   };
-  
+
+  const onAccept = async (member, type) => {
+    try {
+      // Send email using Brevo
+      const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'api-key': API_KEY, // Replace with your Brevo API key
+        },
+        body: JSON.stringify({
+          sender: {
+            name: 'FoodHeaven',
+            email: 'csecastra@gmail.com', // Replace with your sender email
+          },
+          to: [
+            {
+              email: member.email,
+              name: member.name,
+            },
+          ],
+          subject: `${type} Accepted`,
+          htmlContent: `
+            <p>Hello ${member.name},</p>
+            <p>Your ${type} has been accepted. Here are the details:</p>
+            <ul>
+              <li><strong>Name:</strong> ${member.name}</li>
+              <li><strong>Email:</strong> ${member.email}</li>
+              <li><strong>Location:</strong> ${member.location}</li>
+              <li><strong>Time Period:</strong> ${member.timePeriod}</li>
+              <li><strong>Description:</strong> ${member.description}</li>
+            </ul>
+            <p>Thank you!</p>
+          `,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log('Email sent successfully:', result);
+
+        // Remove the item from Firestore
+        if (type === 'donation') {
+          await deleteDoc(doc(db, 'donations', member.id));
+          setDonators((prev) => prev.filter((item) => item.id !== member.id));
+        } else if (type === 'request') {
+          await deleteDoc(doc(db, 'requests', member.id));
+          setRequesters((prev) => prev.filter((item) => item.id !== member.id));
+        }
+
+        console.log('Item removed from Firestore');
+      } else {
+        console.error('Failed to send email:', result.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
@@ -68,7 +148,7 @@ const Dashboard = () => {
       <div
         className={`w-64 bg-white p-4 shadow-md transition-transform duration-300 md:block ${
           isSidebarVisible ? 'translate-x-0' : '-translate-x-full'
-        } fixed top-0 left-0 h-full z-10 flex flex-col md:translate-x-0 z-30`}
+        } fixed top-0 left-0 h-full flex flex-col md:translate-x-0 z-30`}
       >
         {/* Mobile close button */}
         <button
@@ -186,11 +266,11 @@ const Dashboard = () => {
             <div className="grid grid-cols-3 gap-4">
               <div>
                 <p>Accepted Donations</p>
-                <p className="text-lg font-bold">120</p>
+                <p className="text-lg font-bold">{donators.length}</p>
               </div>
               <div>
                 <p>Accepted Requests</p>
-                <p className="text-lg font-bold">85</p>
+                <p className="text-lg font-bold">{requesters.length}</p>
               </div>
               <div>
                 <p>Pending Response</p>
@@ -212,7 +292,12 @@ const Dashboard = () => {
                 <p>{member.email}</p>
                 <p>{member.timePeriod}</p>
                 <p className="italic">{member.description}</p>
-                <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2">Accept</button>
+                <button
+                  onClick={() => onAccept(member, activeView === 'donators' ? 'donation' : 'request')}
+                  className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2"
+                >
+                  Accept
+                </button>
               </div>
             ))}
           </div>
