@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { db, collection, addDoc, onSnapshot, doc, deleteDoc } from "../firebaseConfig";
+import React, { useState, useEffect, useMemo } from 'react';
+import { useNavigate } from "react-router-dom";
+import {getAuth, onAuthStateChanged,db, collection, addDoc, onSnapshot, doc, deleteDoc,signOut } from "../firebaseConfig";
+
 
 const Dashboard = () => {
   const API_KEY = import.meta.env.VITE_BREVO_API_KEY;
@@ -15,6 +17,39 @@ const Dashboard = () => {
     category: '',
   });
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const [currentUser,setCurrentUser] =useState(null);
+  const [userEmail,setUserEmail] = useState(null);
+  const [userName, setUserName] = useState("");
+
+  const auth = getAuth();
+
+  useEffect(()=>{
+    const unsubscribe= onAuthStateChanged(auth, (user) => {
+      if (user) {
+         setCurrentUser(user);
+         setUserEmail(user.email);
+
+         const userDocRef = doc(db, "users", user.uid);
+         const unsubscribeUserDoc = onSnapshot(userDocRef, (doc) => {
+          if (doc.exists()) {
+              setUserName(doc.data().userName); // Assuming 'userName' field stores the username
+          } else {
+              console.log("User document not found!");
+          }
+      });
+      return () => unsubscribeUserDoc();
+      } else{
+        setCurrentUser(null);
+        setUserEmail(null);
+        setUserName("");
+      }
+      return () => unsubscribe(); 
+    },[auth]);
+    
+  })
+
+  
+  console.log(userName);
 
   // Fetch real-time data from Firestore
   useEffect(() => {
@@ -95,7 +130,7 @@ const Dashboard = () => {
           },
           to: [
             {
-              email: member.email,
+              email: userEmail,
               name: member.name,
             },
           ],
@@ -142,6 +177,17 @@ const Dashboard = () => {
     setIsSidebarVisible(!isSidebarVisible);
   };
 
+  const navigate = useNavigate();
+  const logOut = async() =>{
+    try {
+      await signOut(auth);
+      console.log("User signed out successfully!");
+      navigate("/auth"); 
+    } catch (error) {
+      console.error("Error signing out:", error.message);
+    }
+  }
+
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
@@ -172,7 +218,8 @@ const Dashboard = () => {
         </button>
 
         <h2 className="text-2xl font-bold mb-6 text-green-500 text-left">
-          Deep Park South
+        {userName ? userName : "Guest"}
+
         </h2>
         <ul className="flex-grow">
           <li className="mb-2">
@@ -217,7 +264,7 @@ const Dashboard = () => {
           </li>
         </ul>
         <div className="mt-auto border-t border-gray-200 pt-4">
-          <button className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+          <button onClick={logOut} className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300">
             Logout
           </button>
         </div>
@@ -255,8 +302,8 @@ const Dashboard = () => {
             <a href="#" className="relative hover:text-gray-600 transition duration-300">
       
             </a>
-            <button className="hover:bg-gray-200 p-2 rounded-full transition duration-300 flex items-center justify-center w-13 h-13">
-              <span className="text-gray-700 font-medium text-2xl">JD</span>
+            <button className="bg-gray-200 hover:bg-gray-500 p-2 rounded-full transition duration-300 flex items-center justify-center w-13 h-13">
+              <span className="text-gray-700 font-medium mb-3 text-5xl">{userName.charAt(0)}</span>
             </button>
           </div>
         </div>
