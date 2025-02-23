@@ -270,6 +270,8 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {/* sidebarEnd  */}
+
       {/* Main Content */}
       <div className="flex-1 p-6 overflow-y-auto bg-white md:ml-64 "> {/* Added md:ml-64 */}
         {/* Mobile menu icon (smaller icon) */}
@@ -303,7 +305,7 @@ const Dashboard = () => {
       
             </a>
             <button className="bg-gray-200 hover:bg-gray-500 p-2 rounded-full transition duration-300 flex items-center justify-center w-13 h-13">
-              <span className="text-gray-700 font-medium mb-3 text-5xl">{userName.charAt(0)}</span>
+              <span className="text-gray-700 font-medium mb-3 text-5xl">{userName.charAt(0).toLocaleLowerCase()}</span>
             </button>
           </div>
         </div>
@@ -363,7 +365,7 @@ const Dashboard = () => {
               <input type="text" name="timePeriod" placeholder="Time Period" onChange={handleInputChange} className="border rounded px-3 py-2 mb-2 w-full" required />
               <textarea name="description" placeholder="Description" onChange={handleInputChange} className="border rounded px-3 py-2 mb-2 w-full" required />
               <select name="category" onChange={handleInputChange} className="border rounded px-3 py-2 mb-2 w-full">
-              <option value="category">Select category</option>
+              <option value="category">Select Category</option>
                 <option value="ngo">NGO</option>
                 <option value="individual">Individual</option>
                 <option value="orphanage">Orphanage</option>
