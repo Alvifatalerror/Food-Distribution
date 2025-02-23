@@ -74,9 +74,9 @@ const Dashboard = () => {
     setIsSidebarVisible(false); // Close sidebar on selection (mobile)
   };
 
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    const handleInputChange = (e) => {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -338,6 +338,7 @@ const Dashboard = () => {
                 <p>{member.location}</p>
                 <p>{member.email}</p>
                 <p>{member.timePeriod}</p>
+                <p>{member.category}</p>
                 <p className="italic">{member.description}</p>
                 <button
                   onClick={() => onAccept(member, activeView === 'donators' ? 'donation' : 'request')}
@@ -362,6 +363,7 @@ const Dashboard = () => {
               <input type="text" name="timePeriod" placeholder="Time Period" onChange={handleInputChange} className="border rounded px-3 py-2 mb-2 w-full" required />
               <textarea name="description" placeholder="Description" onChange={handleInputChange} className="border rounded px-3 py-2 mb-2 w-full" required />
               <select name="category" onChange={handleInputChange} className="border rounded px-3 py-2 mb-2 w-full">
+              <option value="category">Select category</option>
                 <option value="ngo">NGO</option>
                 <option value="individual">Individual</option>
                 <option value="orphanage">Orphanage</option>
