@@ -85,7 +85,7 @@ const Projects = () => {
         <p className="text-xl text-white">
           Highlighting The Unified NGO's...!!!{" "}
         </p>
-        <div className="w-24 h-1.5 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mt-4 rounded-full"></div>
+        <div className="w-24 h-1.5 bg-gradient-to-r from-white-400 to-red-400 mx-auto mt-4 rounded-full"></div>
       </div>
 
       <div className="relative">
