@@ -10,22 +10,22 @@
 
 // newly added
 import volunteer_img from "./volunteer_img.jpg";
-import child from "./child.jpg";
-import connect_img from "./connect_img.jpg";
+import child from "./child.webp";
+import connect_img from "./connect_img.webp";
 import connect_img2 from "./connect2_img.jpg";
-import background from "./background.jpg";
-import logo from "./logo.png";
+import background from "./background.webp";
+import logo from "./logo.webp";
 import cross_icon from "./cross_icon.svg";
 import menu_icon from "./menu_icon.svg";
 import star_icon from "./star_icon.svg";
 import left_arrow from "./left_arrow.svg";
 import right_arrow from "./right_arrow.svg";
-import Heartflet from "./Heartflet.jpg";
-import Blue_Oasis from "./Blue_Oasis.jpg";
-import Nest from "./Nest.jpg";
-import Nurture from "./Nurture.jpg";
-import Soar from "./Soar.jpg";
-import Seed_And_Sprout from "./Seed_And_Sprout.jpg";
+import Heartflet from "./Heartflet.webp";
+import Blue_Oasis from "./Blue_Oasis.webp";
+import Nest from "./Nest.webp";
+import Nurture from "./Nurture.webp";
+import Soar from "./Soar.webp";
+import Seed_And_Sprout from "./Seed_And_Sprout.webp";
 
 export const assets = {
   logo,
