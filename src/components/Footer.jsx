@@ -7,9 +7,9 @@ const Footer = () => {
       <div className='container mx-auto flex flex-col md:flex-row justify-between items-start'>
         <div className='w-full md:w-1/3 mb-8 md:mb-0'>
             <img src={assets.logo} alt="" />
-            <p className='text-white mt-4'>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                 Quisquam id aliquam nobis quaerat laborum, modi libero 
-                 blanditiis inventore alias odio ea quod tempore quia natus incidunt magni ipsum quibusdam ex?
+            <p className='text-white mt-4'>Join us in our mission to reduce food
+               waste and fight hunger. Every contribution, big or small, makes a difference. Together,
+                we create a world where no meal goes to waste, and no one goes hungry
             </p>
         </div>
         <div className='w-full md:w-1/5 mb-8 md:mb-0'>
@@ -17,7 +17,7 @@ const Footer = () => {
             <ul className='flex flex-col gap-2 text-gray-400'>
                 <a href="#Header" className='hover:text-white'>Home</a>
                 <a href="#About" className='hover:text-white'>About Us</a>
-                <a href="#Contact" className='hover:text-white'>Contact Us</a>
+                <a href="#Join_Us" className='hover:text-white'>Contact Us</a>
                 <a href="#" className='hover:text-white'>Privacy Poicy</a>
             </ul>
         </div>

@@ -113,7 +113,11 @@ const Dashboard = () => {
             <Sidebar userName={userName} onLogOut={logOut} onViewChange={handleViewChange} isSidebarVisible={isSidebarVisible} toggleSidebar={toggleSidebar} />
             <MainContent activeView={activeView} donators={donators} requesters={requesters} formData={formData} handleInputChange={handleInputChange} handleSubmit={handleSubmit} onAccept={onAccept} userName={userName} toggleSidebar={toggleSidebar} />
         </div>
+
+      
+
     );
+
 };
 
 export default Dashboard;
