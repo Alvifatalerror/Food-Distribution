@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Navbar from './Navbar';
 
 const images = [
-  '/header_img7.jpg',
-  '/header_img4.jpg',
-  '/header_img5.jpg',
-  '/header_img6.jpg',
+  '/header_img7.webp',
+  '/header_img4.webp',
+  '/header_img5.webp',
+  '/header_img6.webp',
 ];
 
 const Header = () => {

@@ -101,9 +101,9 @@ const AuthForm = () => {
               <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}  className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700" />
 
               <select value={organization} onChange={(e) => setOrganization(e.target.value)} className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700">
-                <option>Ngo</option>
-                <option>oxxx</option>
-                <option>yyyy</option>
+                <option >Ngo</option>
+                <option>Others</option>
+                
               </select>
 
               <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-300">Sign Up</button> {/* Improved button styling and transition */}
