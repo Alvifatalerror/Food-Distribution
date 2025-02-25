@@ -18,6 +18,7 @@ const MainContent = ({
         </svg>
       </button>
 
+
       <div className="flex justify-between items-center mb-6">
         <div className="relative w-80 md:w-100 pl-7">
           <input
@@ -27,8 +28,8 @@ const MainContent = ({
           />
         </div>
         <div className="flex items-center space-x-4">
-          <button className="bg-gray-200 hover:bg-gray-500 p-2 rounded-full transition duration-300 flex items-center justify-center w-13 h-13">
-            <span className="text-gray-700 font-medium mb-3 text-5xl">{userName?.charAt(0)}</span>
+          <button className="bg-gray-200 hover:bg-gray-500 border border-black p-2 rounded-full transition duration-300 flex items-center justify-center w-13 h-13">
+            <span className="text-gray-700 font-medium mb-1 text-5xl">{userName?.charAt(0)}</span>
           </button>
         </div>
       </div>
@@ -38,16 +39,16 @@ const MainContent = ({
           <h3 className="text-xl font-bold mb-2">Overview</h3>
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <p>Accepted Donations</p>
+              <p>Donations</p>
               <p className="text-lg font-bold">{donators.length}</p>
             </div>
             <div>
-              <p>Accepted Requests</p>
+              <p>Requests</p>
               <p className="text-lg font-bold">{requesters.length}</p>
             </div>
             <div>
-              <p>Pending Response</p>
-              <p className="text-lg font-bold">35</p>
+              {/* <p>Pending Response</p>
+              <p className="text-lg font-bold">35</p> */}
             </div>
           </div>
         </div>

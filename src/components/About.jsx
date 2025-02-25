@@ -3,20 +3,11 @@ import { assets } from '../assets/assets';
 
 const About = () => {
   return (
-    <div className='relative flex flex-col items-center justify-center container mx-auto p-14 md:px-20 lg:px-32 w-full overflow-hidden bg-gray-900 -mt-1' id='About'>
+    <div className='relative flex flex-col items-center justify-center container mx-auto p-14 md:px-20 lg:px-32 w- overflow-hidden bg-gray-900 -mt-1' id='About'>
 
 
-      {/* Layered Background with Gradients and Depth */}
-      <div className='absolute inset-0 z-0'>
-        {/* Base Gradient Layer - Darker */}
-        <div className='absolute inset-0 bg-gradient-to-r from-gray-900 to-gray-950 opacity-95 animate-gradient-x'></div>
-        {/* Subtle Radial Gradient for Depth - Darker */}
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.05)_0%,_rgba(0,0,0,0)_70%)] opacity-40'></div>
-        {/* Diagonal Gradient for 3D Effect - Darker */}
-        <div className='absolute inset-0 bg-gradient-to-br from-transparent via-gray-900 to-gray-950 opacity-60'></div>
-        {/* Subtle Pattern Overlay */}
-        <div className='absolute inset-0 bg-[url("/path/to/subtle-pattern.png")] opacity-15'></div>
-      </div>
+    
+     
 
       {/* About Content with 3D Coming Out Effect */}
       <div className='relative z-10 mt-10 text-center max-w-2xl text-gray-100 transform perspective-1000'>
@@ -31,11 +22,7 @@ const About = () => {
 
         {/* 3D Paragraph */}
         <p className='text-lg leading-relaxed transform-style-preserve-3d hover:translate-z-10 transition-transform duration-500 relative [text-shadow:_0_1px_2px_rgba(0,0,0,0.4),_0_2px_4px_rgba(0,0,0,0.2)]'>
-          We collaborate with restaurants, events, and households to redirect surplus food to communities in need. By leveraging technology and compassionate action, we aim to minimize food wastage while nourishing underprivileged communities.
-          {/* 3D Text Shadow */}
-          <span className='absolute top-0 left-0 w-full h-full text-lg leading-relaxed opacity-30 transform translate-z-[-5px] pointer-events-none'>
-            We collaborate with restaurants, events, and households to redirect surplus food to communities in need. By leveraging technology and compassionate action, we aim to minimize food wastage while nourishing underprivileged communities.
-          </span>
+        "Our mission is to bridge the gap between surplus food and those in need. Through our platform, individuals and organizations can donate excess food, while those in need can request help with ease. Together, we reduce waste, fight hunger, and build a community of care."
         </p>
       </div>
 
@@ -60,43 +47,27 @@ const About = () => {
       </div>
 
       {/* Mission Section with 3D Pop-Up Effect */}
-      <div className='relative w-full h-[500px] bg-gray-900 text-white flex flex-col items-center justify-center my-10 rounded-2xl overflow-hidden shadow-2xl transform transition-transform duration-300 hover:scale-[1.02] hover:shadow-3xl'>
+      <div className='relative w-screen md:w-full h-[500px] bg-gray-900 text-white flex flex-col items-center justify-center my-10 md:rounded-2xl overflow-hidden shadow-2xl transform transition-transform duration-300 hover:scale-[1.02] hover:shadow-3xl'>
         {/* Background Image with Gradient Overlay */}
         <img
           src={assets.background}
           alt='Background'
-          className='absolute top-0 left-0 w-full h-full object-cover opacity-30'
+          className='absolute top-0 left-0 w-full h-full object-cover opacity-100'
         />
-        {/* Radial Gradient for Depth - Darker */}
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.05)_0%,_rgba(0,0,0,0.9)_70%)]'></div>
-        <h1 className='text-3xl sm:text-5xl font-extrabold z-10 uppercase tracking-wider animate-pulse'>
+      
+        
+        <h1 className='text-3xl text-center sm:text-5xl font-extrabold z-10 uppercase tracking-wider opacity-100 animate-pulse'>
           Join Our Mission
         </h1>
         <p className='text-center text-lg max-w-xl mt-4 z-10 italic'>
           "No More Wasted Meals. No More Hungry Hearts ❤️"
         </p>
-        <button className='mt-6 px-6 py-3 border border-white text-white rounded-lg hover:bg-white hover:text-black transition font-semibold opacity-70 hover:opacity-100 z-10'>
+        <button className='mt-6 px-6 py-3 border border-white text-white rounded-lg  hover:bg-white hover:text-black transition font-semibold opacity-70 hover:opacity-100 z-10'>
           Get Involved
         </button>
       </div>
 
-      {/* Gallery Section with 3D Hover Effect */}
-      <div className='relative z-10 grid grid-cols-1 md:grid-cols-4 gap-6 mt-10'>
-        {[assets.image1, assets.image2, assets.image3, assets.image4].map((image, index) => (
-          <div
-            key={index}
-            className='relative overflow-hidden rounded-lg shadow-2xl hover:shadow-3xl transition-shadow duration-500'
-          >
-            <img
-              src={image}
-              alt={`Gallery Image ${index + 1}`}
-              className='w-full h-64 object-cover transform hover:scale-110 transition-transform duration-500'
-            />
-            {/* Gradient Overlay for Depth - Darker */}
-            <div className='absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-0 hover:opacity-50 transition-opacity duration-500'></div>
-          </div>
-        ))}
-      </div>
+     
 
     </div>
   );

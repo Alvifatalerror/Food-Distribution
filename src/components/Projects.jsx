@@ -75,7 +75,7 @@ const Projects = () => {
   }
 
   return (
-    <div className="overflow-x-hidden w-full min-h-[500px] bg-gray-900 px-8 py-16  shadow-lg">
+    <div id="Community" className="overflow-x-hidden w-full min-h-screen bg-gray-900 px-8 py-16  shadow-lg">
       <div className="text-center mb-16">
         <h2 className="text-5xl mb-4 text-white">
           <span className="font-extrabold">TOGETHER</span>,
@@ -98,23 +98,18 @@ const Projects = () => {
           {projectsData.map((project, index) => (
             <div
               key={index}
-              className={`w-full sm:w-1/3 px-6 flex-shrink-0 ${
-                index === projectsData.length - 1 ? "opacity-100" : "opacity-75"
-              }`}
+              className={`w-full sm:w-1/3 px-6 flex-shrink-0`}
             >
               <div className="relative group w-64 h-64 mx-auto floating-card">
                 {/* Base Layer (Shadow Layer) */}
-                <div className="absolute inset-0 bg-white rounded-full shadow-lg shadow-[0_4px_14px_rgba(255,0,0,0.5)] transform group-hover:scale-105 transition-transform duration-300 z-10 group-hover:shadow-[0_8px_24px_rgba(255,0,0,0.7)]"></div>
-
-                {/* Glass Layer */}
-                <div className="absolute inset-0 bg-white/20 backdrop-blur-md rounded-full border-2 border-white/10 z-20"></div>
-
+                <div className="absolute inset-0 bg-white rounded-full  transform group-hover:scale-105 transition-transform duration-300 z-10 group-hover:shadow-[0_8px_24px_rgba(255,0,0,0.7)]"></div>
+                
                 {/* Content */}
                 <div className="relative z-30 w-full h-full flex flex-col items-center justify-center p-4">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-32 h-32 object-cover rounded-full"
+                    className="w-32 h-32 object-cover border border-black/15 rounded-full"
                   />
                   <div className="text-center mt-4">
                     <h3 className="text-xl font-bold text-gray-800 mb-2">
@@ -150,6 +145,7 @@ const Projects = () => {
           </button>
         </div>
       </div>
+      <div className=" text-wrap text-center py-5 mt-10 md:mt-28 text-white text-2xl font-medium md:text-xl"><p className="md:px-72">"Every partnership brings us one step closer to a hunger-free world. Here, we celebrate the NGOs joining our mission, working together to rescue surplus food and deliver it to those in need. Together, we truly make a difference."</p></div>
     </div>
   );
 };

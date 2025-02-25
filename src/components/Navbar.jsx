@@ -27,10 +27,10 @@ useEffect(()=>{
         <ul className='hidden md:flex gap-7 text-white font-semibold'>
           <a href="#Header" className='cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>Home</a>
           <a href="#About" className='cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>About</a>
-          <a href="#Projects" className='cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>Projects</a>
-          <a href="#Testimonials" className='cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>Testimonials</a>
+          <a href="#Community" className='cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>Community</a>
+          <a href="#Join_Us" className='cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>Join Us</a>
         </ul>
-        <button className='hidden md:block bg-red-500 px-6 py-2 rounded-full text-white font-semibold hover:bg-red-600 transition-all' onClick={() => navigate('/auth')}>Sign in/up</button>
+        <button className='hidden md:block bg-red-500 px-6 py-2 rounded-full text-white font-semibold hover:bg-red-600 transition-all' onClick={() => navigate('/auth')}>Sign In</button>
         <img onClick={()=>setshowMobileMenu(true)} src={assets.menu_icon} className='md:hidden w-7 cursor-pointer' alt="" />
       </div>
       {/* -----------mobile-menu----------- */}
@@ -41,8 +41,8 @@ useEffect(()=>{
         <ul className='flex flex-col items-center gap-2 mt-5 px-5 text-lg font-medium'>
           <a onClick={()=>setshowMobileMenu(false)} href="#Header" className='px-4 py-3 rounded-full inline-block text-black hover:bg-red-100'>Home</a>
           <a onClick={()=>setshowMobileMenu(false)} href="#About" className='px-4 py-3 rounded-full inline-block text-black hover:bg-red-100'>About</a>
-          <a onClick={()=>setshowMobileMenu(false)} href="#Projects" className='px-4 py-3 rounded-full inline-block text-black hover:bg-red-100'>Projects</a>
-          <a onClick={()=>setshowMobileMenu(false)} href="#Testimonials" className='px-4 py-3 rounded-full inline-block text-black hover:bg-red-100'>Testimonials</a>
+          <a onClick={()=>setshowMobileMenu(false)} href="#Community" className='px-4 py-3 rounded-full inline-block text-black hover:bg-red-100'>Community</a>
+          <a onClick={()=>setshowMobileMenu(false)} href="#Join_Us" className='px-4 py-3 rounded-full inline-block text-black hover:bg-red-100'>Join Us</a>
         </ul>
       </div>
       

@@ -89,7 +89,7 @@ const AuthForm = () => {
 
 
   return (
-    <div className="bg-gradient-to-r from-blue-50 to-purple-50 h-screen flex items-center justify-center"> {/* Gradient background */}
+    <div className="bg-[url('https://images.pexels.com/photos/1353938/pexels-photo-1353938.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')] bg-cover h-screen flex items-center justify-center"> {/* Gradient background */}
       <div className="bg-white p-10 rounded-2xl shadow-lg w-96 transition duration-300 ease-in-out hover:scale-105"> {/* Increased padding, rounded corners, shadow, hover effect */}
         {isSignUp ? (
           <div>
