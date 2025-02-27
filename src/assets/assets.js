@@ -28,6 +28,12 @@ import Soar from "./Soar.webp";
 import Seed_And_Sprout from "./Seed_And_Sprout.webp";
 import compost_img from "./composting.webp";
 
+import GivingFood_img from "./Givingfood.webp";
+import takingFood_img from "./takingfood.webp";
+import waste_img from "./waste.webp";
+import waste2_img from "./waste2.webp";
+import ngo from "./ngo.webp";
+
 export const assets = {
   logo,
   cross_icon,
@@ -47,6 +53,11 @@ export const assets = {
   Nurture,
   Soar,
   Seed_And_Sprout,
+  GivingFood_img,
+  takingFood_img,
+  waste_img,
+  waste2_img,
+  ngo,
 };
 
 export const projectsData = [
