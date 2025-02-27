@@ -5,10 +5,6 @@ const About = () => {
   return (
     <div className='relative flex flex-col items-center justify-center container mx-auto p-14 md:px-20 lg:px-32 w- overflow-hidden bg-gray-900 -mt-1' id='About'>
 
-
-    
-     
-
       {/* About Content with 3D Coming Out Effect */}
       <div className='relative z-10 mt-10 text-center max-w-2xl text-gray-100 transform perspective-1000'>
         {/* 3D Heading */}

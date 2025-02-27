@@ -7,6 +7,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import AuthForm from './components/AuthForm';
 import Dashboard from './components/Dashboard';
+import Auth2 from './components/Auth2';
 
 
 const App = () => {
@@ -18,11 +19,12 @@ const App = () => {
           path="/" 
           element={
             <>
-              <Header />
+              <Header  />
               <About />
               <Projects  />
               <Contact />
               <Footer />
+              <Auth2/>
             </>
           } 
         />

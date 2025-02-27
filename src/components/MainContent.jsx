@@ -1,4 +1,5 @@
 import React from "react";
+import HowToUse from "./HowToUse"; // Ensure the import matches the file name
 
 const MainContent = ({
   activeView,
@@ -18,7 +19,6 @@ const MainContent = ({
         </svg>
       </button>
 
-
       <div className="flex justify-between items-center mb-6">
         <div className="relative w-80 md:w-100 pl-7">
           <input
@@ -35,8 +35,9 @@ const MainContent = ({
       </div>
 
       {activeView === "overview" && (
-        <div className="bg-white p-4 rounded shadow-md">
-          <h3 className="text-xl font-bold mb-2">Overview</h3>
+        <div>
+          <div className="bg-white p-4 rounded shadow-md">
+            <h3 className="text-xl font-bold mb-2">Overview</h3>
           <div className="grid grid-cols-3 gap-4">
             <div>
               <p>Donations</p>
@@ -51,7 +52,14 @@ const MainContent = ({
               <p className="text-lg font-bold">35</p> */}
             </div>
           </div>
+           {/* Use the correct component name with uppercase H */}
+           
         </div>
+        <div>
+          <HowToUse />
+        </div>
+        </div>
+        
       )}
 
       {(activeView === "donators" || activeView === "requesters") && (
