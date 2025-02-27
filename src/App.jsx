@@ -25,11 +25,11 @@ const App = () => {
               <Projects  />
               <Contact />
               <Footer />
-              <Auth2/>
             </>
           } 
         />
         {/* Auth Page (Login/Signup) - Only this component is shown */}
+        <Route path='/auth2' element={<Auth2/>}/>
         <Route path="/auth" element={<AuthForm />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>

@@ -153,7 +153,7 @@ const Dashboard = () => {
     try {
       await signOut(auth);
       console.log("User signed out successfully!");
-      navigate("/auth");
+      navigate("/");
     } catch (error) {
       console.error("Error signing out:", error.message);
     }
