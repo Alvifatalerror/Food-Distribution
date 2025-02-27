@@ -26,6 +26,7 @@ import Nest from "./Nest.webp";
 import Nurture from "./Nurture.webp";
 import Soar from "./Soar.webp";
 import Seed_And_Sprout from "./Seed_And_Sprout.webp";
+import compost_img from "./composting.webp";
 
 export const assets = {
   logo,
@@ -39,7 +40,7 @@ export const assets = {
   connect_img,
   connect_img2,
   background,
-
+  compost_img,
   Heartflet,
   Blue_Oasis,
   Nest,

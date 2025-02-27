@@ -10,6 +10,7 @@ import Dashboard from './components/Dashboard';
 import Auth2 from './components/Auth2';
 
 
+
 const App = () => {
   return (
     <Router>
