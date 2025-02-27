@@ -33,6 +33,8 @@ import takingFood_img from "./takingfood.webp";
 import waste_img from "./waste.webp";
 import waste2_img from "./waste2.webp";
 import ngo from "./ngo.webp";
+import donation from "./donation.webp";
+import receiving from "./receiving.webp";
 
 export const assets = {
   logo,
@@ -58,6 +60,8 @@ export const assets = {
   waste_img,
   waste2_img,
   ngo,
+  donation,
+  receiving,
 };
 
 export const projectsData = [
