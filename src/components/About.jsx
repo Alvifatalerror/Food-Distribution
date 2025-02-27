@@ -1,6 +1,6 @@
+
 import React, { useEffect, useRef, useState, memo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { assets } from '../assets/assets';
 
 // Memoized components to prevent unnecessary re-renders
 const StatItem = memo(({ stat, index, inView }) => (
@@ -55,10 +55,9 @@ const WorkCard = memo(({ item, index, inView }) => (
         <div className="text-5xl mb-6">{item.icon}</div>
         <h3 className={`text-2xl font-bold mb-4 ${item.color} bg-clip-text text-transparent`}>{item.title}</h3>
         
-        <div className="h-40  rounded-lg mb-6 overflow-hidden group-hover:scale-105 transition-transform border border-indigo-100">
-          <div className="h-full w-full flex items-center justify-center text-indigo-400 ">
-          <img src={assets[item.image]} alt="" className="w-full h-auto" />
-
+        <div className="h-40 bg-indigo-50 rounded-lg mb-6 overflow-hidden group-hover:scale-105 transition-transform border border-indigo-100">
+          <div className="h-full w-full flex items-center justify-center text-indigo-400 bg-gradient-to-br from-white/90 to-indigo-50/90">
+            <span className="text-sm">Photo Space</span>
 
           </div>
         </div>
@@ -161,22 +160,19 @@ const About = () => {
       title: "Food Donors", 
       description: "Whether you're an individual or a business, you can easily list any surplus food you have, helping to ensure that it doesn't go to waste.",
       color: "bg-gradient-to-br from-green-500 to-emerald-700",
-      icon: "🍽️",
-      image: "takingFood_img"
+      icon: "🍽️"
     },
     { 
       title: "People in Need", 
       description: "If you're in need of food assistance, our platform allows you to request help. We're here to make sure you receive the support you deserve.",
       color: "bg-gradient-to-br from-blue-500 to-indigo-700",
-      icon: "🤲",
-      image: "takingFood_img"
+      icon: "🤲"
     },
     { 
       title: "NGOs", 
       description: "Non-governmental organizations can coordinate the collection and distribution of food efficiently, ensuring that every meal goes to someone who needs it.",
       color: "bg-gradient-to-br from-amber-500 to-orange-700",
-      icon: "🏛️",
-      image: "ngo"
+      icon: "🏛️"
     }
   ];
   
@@ -366,7 +362,7 @@ const About = () => {
             >
               <div className="relative aspect-video overflow-hidden rounded-xl border border-green-200 shadow-md">
                 <div className="absolute inset-0 bg-green-50 flex items-center justify-center text-green-600">
-                  <img src={assets.waste2_img} alt="" className='w-full' />
+                  <span>Sustainability Photo</span>
                 </div>
               </div>
             </motion.div>
@@ -547,6 +543,7 @@ const About = () => {
             ))}
           </div>
         </div>
+
       </div>
     </div>
   );
