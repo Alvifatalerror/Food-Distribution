@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, memo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { assets } from '../assets/assets';
+import { useNavigate } from "react-router-dom";
 
 // Memoized components to prevent unnecessary re-renders
 const StatItem = memo(({ stat, index, inView }) => (
@@ -51,7 +52,7 @@ const WorkCard = memo(({ item, index, inView }) => (
     <div className="relative transform transition-all duration-500 h-full">
       <div className={`absolute inset-0 ${item.color} opacity-10 rounded-xl`}></div>
       
-      <div className="relative bg-white/90 backdrop-blur-md rounded-xl p-8 h-full border border-indigo-100 shadow-lg group-hover:shadow-xl transform transition-all">
+      <div className="relative bg-white/90 rounded-xl p-8 h-full border border-indigo-100 shadow-lg group-hover:shadow-xl transform transition-all">
         <div className="text-5xl mb-6">{item.icon}</div>
         <h3 className={`text-2xl font-bold mb-4 ${item.color} bg-clip-text text-transparent`}>{item.title}</h3>
         
@@ -63,7 +64,7 @@ const WorkCard = memo(({ item, index, inView }) => (
           </div>
         </div>
         
-        <p className="text-indigo-800 text-base leading-relaxed font-medium">{item.description}</p>
+        <p className="text-indigo-800 text-xl leading-relaxed font-medium">{item.description}</p>
       </div>
     </div>
   </motion.div>
@@ -71,6 +72,7 @@ const WorkCard = memo(({ item, index, inView }) => (
 
 // Main About component
 const About = () => {
+  
   // Use refs to track visibility
   const containerRef = useRef(null);
   const statsRef = useRef(null);
@@ -85,9 +87,11 @@ const About = () => {
     howWeWork: false,
     sustainability: false
   });
+  const navigate = useNavigate();
   
   // Monitor sections for visibility with reset on exit
   useEffect(() => {
+    
     const observerOptions = { 
       threshold: 0.3,
       rootMargin: "0px" 
@@ -321,12 +325,12 @@ const About = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={sectionsInView.howWeWork ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-indigo-800 mb-16"
+          className="text-3xl md:text-5xl font-bold text-center h-16 text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-indigo-800 mb-16"
         >
-          How We <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-green-600 to-teal-600">Work</span>
+          Bridging  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-green-600 to-teal-600">Hunger and Hope</span>
         </motion.h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3  gap-8 max-w-6xl mx-auto">
           {workData.map((item, index) => (
             <WorkCard 
               key={index}
@@ -354,9 +358,9 @@ const About = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="text-3xl md:text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-teal-700 via-green-600 to-emerald-700 mb-12"
+      className="text-3xl md:text-5xl font-bold text-center text-transparent h-20 bg-clip-text bg-gradient-to-r from-teal-700 via-green-600 to-emerald-700 mb-12"
     >
-      Turning Waste into Worth
+      Hey Farmer, Let’s Feed the Land!
     </motion.h2>
     
     <div className="flex flex-col lg:flex-row items-center gap-10">
@@ -384,13 +388,14 @@ const About = () => {
       
       {/* Text & Hover Fixes */}
       <motion.div 
+      style={{pointerEvents: "auto" }}
         initial={{ opacity: 0, x: 30 }}
-        whileInView={{ opacity: 1, x: 0 }}
+        whileInView={{ opacity: 1, }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="lg:w-1/2"
       >
-        <p className="text-indigo-900 text-lg leading-relaxed mb-6">
+        <p className="text-indigo-900 text-xl text-center leading-relaxed mb-6">
           In addition to tackling food insecurity, we also strive to reduce food waste's
           environmental impact. Our platform connects restaurants with local farmers who can
           repurpose food waste for composting or as animal feed. By doing so, we contribute to
@@ -420,28 +425,20 @@ const About = () => {
         </div>
         
         {/* Button with Hover Fix */}
-        <motion.button
-          whileHover={{ 
-            scale: 1.07, 
-            y: -3,
-            boxShadow: "0 8px 18px rgba(0, 128, 0, 0.25)"
-          }}
-          whileTap={{ scale: 0.98 }}
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg shadow-lg flex items-center gap-2 transition-all duration-300 cursor-pointer"
+        
+        <button
+          onClick={() => navigate("/auth2")} 
+          
+          className="z-10 px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg shadow-lg flex items-center gap-2 transition-all duration-300 "
         >
-          <motion.span 
-            whileHover={{ rotate: -10 }} 
-            transition={{ type: "spring", stiffness: 250, damping: 15 }}
+          <span>Farmers’ Portal</span>
+          <span
             className="text-xl"
           >
             🌱
-          </motion.span>
-          <span>Farms Request Waste Food</span>
-        </motion.button>
+          </span>
+          <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg></span>
+        </button>
       </motion.div>
     </div>
   </div>
