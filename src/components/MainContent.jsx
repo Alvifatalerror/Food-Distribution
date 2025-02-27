@@ -1,15 +1,17 @@
 import React from "react";
-import HowToUse from "./HowToUse"; // Ensure the import matches the file name
+import HowToUse from "./HowToUse";
 
 const MainContent = ({
   activeView,
   donators,
   requesters,
+  wasteData,
   handleInputChange,
   handleSubmit,
   onAccept,
   toggleSidebar,
   userName,
+  fromAuth2,
 }) => {
   return (
     <div className="flex-1 p-6 overflow-y-auto bg-white md:ml-64">
@@ -38,31 +40,24 @@ const MainContent = ({
         <div>
           <div className="bg-white p-4 rounded shadow-md">
             <h3 className="text-xl font-bold mb-2">Overview</h3>
-          <div className="grid grid-cols-3 gap-4">
-            <div>
-              <p>Donations</p>
-              <p className="text-lg font-bold">{donators.length}</p>
-            </div>
-            <div>
-              <p>Requests</p>
-              <p className="text-lg font-bold">{requesters.length}</p>
-            </div>
-            <div>
-              {/* <p>Pending Response</p>
-              <p className="text-lg font-bold">35</p> */}
+            <div className="grid grid-cols-3 gap-4">
+              <div>
+                <p>Donations</p>
+                <p className="text-lg font-bold">{donators.length}</p>
+              </div>
+              <div>
+                <p>Requests</p>
+                <p className="text-lg font-bold">{requesters.length}</p>
+              </div>
             </div>
           </div>
-           {/* Use the correct component name with uppercase H */}
-           
+          <div>
+            <HowToUse />
+          </div>
         </div>
-        <div>
-          <HowToUse />
-        </div>
-        </div>
-        
       )}
 
-      {(activeView === "donators" || activeView === "requesters") && (
+      {(activeView === "donators" || activeView === "requesters") && !fromAuth2 && (
         <div className="bg-white p-4 rounded shadow-md mt-4">
           <h3 className="text-xl font-bold mb-2">
             {activeView === "donators" ? "Donators List" : "Requesters List"}
@@ -86,7 +81,7 @@ const MainContent = ({
         </div>
       )}
 
-      {(activeView === "addDonation" || activeView === "addRequest") && (
+      {(activeView === "addDonation" || activeView === "addRequest") && !fromAuth2 && (
         <div className="bg-white p-4 rounded shadow-md mt-4">
           <h3 className="text-xl font-bold mb-2">{activeView === "addDonation" ? "Add Donation" : "Add Request"}</h3>
           <form onSubmit={handleSubmit}>
@@ -112,6 +107,65 @@ const MainContent = ({
             </button>
           </form>
         </div>
+      )}
+
+      {fromAuth2 && (
+        <>
+          {activeView === "viewWaste" && (
+            <div className="bg-white p-4 rounded shadow-md mt-4">
+              <h3 className="text-xl font-bold mb-2">Waste List</h3>
+              {wasteData.map((member) => (
+                <div key={member.id} className="border rounded p-4 mb-4">
+                  <p className="font-bold">{member.name}</p>
+                  <p>{member.location}</p>
+                  <p>{member.email}</p>
+                  <p>{member.timePeriod}</p>
+                  <p>{member.category}</p>
+                  <p className="italic">{member.description}</p>
+                  <button
+                    onClick={() => onAccept(member, "waste")}
+                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2"
+                  >
+                    Accept
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+          {activeView === "addWaste" && (
+            <div className="bg-white p-4 rounded shadow-md mt-4">
+              <h3 className="text-xl font-bold mb-2">Add Waste</h3>
+              <form onSubmit={handleSubmit}>
+                {["name", "email", "location", "timePeriod", "description"].map((field) => (
+                  <input
+                    key={field}
+                    type={field === "email" ? "email" : "text"}
+                    name={field}
+                    placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                    onChange={handleInputChange}
+                    className="border rounded px-3 py-2 mb-2 w-full"
+                    required
+                  />
+                ))}
+                <select name="category" onChange={handleInputChange} className="border rounded px-3 py-2 mb-2 w-full">
+                  <option value="category">Select category</option>
+                  <option value="ngo">NGO</option>
+                  <option value="individual">Individual</option>
+                  <option value="orphanage">Orphanage</option>
+                </select>
+                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  Submit
+                </button>
+              </form>
+            </div>
+          )}
+          {activeView === "collectWaste" && (
+            <div className="bg-white p-4 rounded shadow-md mt-4">
+              <h3 className="text-xl font-bold mb-2">Collect Waste</h3>
+              <p>Collect waste content goes here.</p>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

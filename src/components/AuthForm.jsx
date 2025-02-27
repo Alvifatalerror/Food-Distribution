@@ -33,7 +33,7 @@ const AuthForm = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, redirect to dashboard
-        navigate('/dashboard');
+        navigate('/dashboard', { state: { fromAuth2: false } }); // Ensure fromAuth2 is false
       }
     });
 
@@ -78,7 +78,7 @@ const AuthForm = () => {
       });
 
       alert('User registered successfully!');
-      navigate('/dashboard');
+      navigate('/dashboard', { state: { fromAuth2: false } }); // Ensure fromAuth2 is false
     } catch (error) {
       alert(error.message);
     }
@@ -96,7 +96,7 @@ const AuthForm = () => {
 
       await signInWithEmailAndPassword(auth, email, password);
       alert('Login successful!');
-      navigate('/dashboard');
+      navigate('/dashboard', { state: { fromAuth2: false } }); // Ensure fromAuth2 is false
     } catch (error) {
       alert(error.message);
     }
@@ -128,7 +128,7 @@ const AuthForm = () => {
           organization: 'Ngo', // Default organization
         });
       }
-      navigate('/dashboard');
+      navigate('/dashboard', { state: { fromAuth2: false } }); // Ensure fromAuth2 is false
     } catch (error) {
       alert(error.message);
     }
