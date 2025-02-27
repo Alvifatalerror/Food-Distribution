@@ -83,14 +83,14 @@ const Projects = () => {
         </h2>
 
         <p className="text-xl text-white">
-          Highlighting The Unified NGO's...!!!{" "}
+          Highlighting The Unified NGOs...!!!{" "}
         </p>
         <div className="w-24 h-1.5 bg-gradient-to-r from-white-400 to-red-400 mx-auto mt-4 rounded-full"></div>
       </div>
 
       <div className="relative">
         <div
-          className="flex transition-transform duration-500 ease-in-out"
+          className=" flex transition-transform duration-500 ease-in-out"
           style={{
             transform: `translateX(-${(currentIndex * 100) / cardsToShow}%)`,
           }}
@@ -145,7 +145,7 @@ const Projects = () => {
           </button>
         </div>
       </div>
-      <div className=" text-wrap text-center py-5 mt-10 md:mt-28 text-white text-2xl font-medium md:text-xl"><p className="md:px-72">"Every partnership brings us one step closer to a hunger-free world. Here, we celebrate the NGOs joining our mission, working together to rescue surplus food and deliver it to those in need. Together, we truly make a difference."</p></div>
+      <div className=" text-wrap text-center py-5 mt-10 md:mt-28 text-white text-2xl italic font-light md:text-xl"><p className="md:px-72">Every partnership brings us one step closer to a hunger-free world. Here, we celebrate the NGOs joining our mission, working together to rescue surplus food and deliver it to those in need. Together, we truly make a difference.</p></div>
     </div>
   );
 };
