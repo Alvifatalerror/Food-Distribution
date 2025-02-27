@@ -25,6 +25,7 @@ const App = () => {
               <Contact />
               <Footer />
               <Auth2/>
+             
             </>
           } 
         />
