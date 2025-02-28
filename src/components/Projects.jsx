@@ -101,55 +101,55 @@ const Projects = () => {
           {projectsData.map((project, index) => (
             <div key={index} className="w-full sm:w-1/3 px-6 flex-shrink-0">
               <div className="relative group w-64 h-64 mx-auto perspective-3d cursor-pointer">
-                {/* Shadow effects below the card */}
-                <div className="absolute inset-0 bg-gray-400 rounded-full opacity-30 transform translate-y-8 blur-xl z-0 group-hover:translate-y-12 group-hover:blur-2xl transition-all duration-500"></div>
-                <div className="absolute inset-0 bg-gray-200 rounded-full opacity-40 transform translate-y-6 blur-lg z-0 group-hover:translate-y-10 group-hover:blur-xl transition-all duration-500"></div>
+                {/* Shadow effects below the card - reduced shadow movement */}
+                <div className="absolute inset-0 bg-gray-400 rounded-full opacity-20 transform translate-y-8 blur-xl z-0 group-hover:translate-y-9 group-hover:blur-xl transition-all duration-500"></div>
+                <div className="absolute inset-0 bg-gray-200 rounded-full opacity-30 transform translate-y-6 blur-lg z-0 group-hover:translate-y-7 group-hover:blur-lg transition-all duration-500"></div>
                 
-                {/* Main container that transforms as one unit */}
+                {/* Main container with reduced rotation and scale effect */}
                 <div 
                   className="floating-card absolute inset-0 rounded-full transform transition-all duration-700 z-10 
-                    group-hover:scale-110 group-hover:rotate-6"
+                    group-hover:scale-105 group-hover:rotate-2"
                   style={{
                     transformStyle: "preserve-3d",
                   }}>
                   
                   {/* Main circular background with shadow and gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white rounded-full shadow-2xl"
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white rounded-full shadow-xl"
                     style={{
-                      boxShadow: "0 25px 50px rgba(0, 0, 0, 0.2), 0 15px 30px rgba(59, 130, 246, 0.3)",
+                      boxShadow: "0 15px 30px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(59, 130, 246, 0.2)",
                       transform: "translateZ(0px)",
                       backfaceVisibility: "hidden",
                     }}>
                   </div>
                   
-                  {/* Content container - all transformations happen within the circle */}
+                  {/* Content container - reduced 3D effect */}
                   <div className="relative w-full h-full flex flex-col items-center justify-center p-4"
                     style={{ transform: "translateZ(1px)" }}>
 
-                    {/* Image container with hover effect */}
-                    <div className="relative overflow-hidden rounded-full border-6 border-white shadow-xl 
-                        transition-all duration-500 group-hover:scale-115 animate-pulse-medium"
+                    {/* Image container with subtler hover effect */}
+                    <div className="relative overflow-hidden rounded-full border-4 border-white shadow-lg 
+                        transition-all duration-500 group-hover:scale-105 animate-pulse-subtle"
                       style={{ 
-                        boxShadow: "0 15px 35px rgba(0, 0, 0, 0.2), 0 10px 25px rgba(59, 130, 246, 0.3)",
-                        transform: "translateZ(20px)",
+                        boxShadow: "0 10px 25px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(59, 130, 246, 0.2)",
+                        transform: "translateZ(10px)",
                       }}>
                       <img
                         src={project.image}
                         alt={project.title}
                         className="w-32 h-32 object-cover rounded-full transition-all duration-700 
-                          group-hover:scale-110"
+                          group-hover:scale-105"
                       />
-                      {/* Overlay gradients */}
-                      <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/30 to-purple-500/10 rounded-full 
-                        opacity-60 group-hover:opacity-80 transition-all duration-500"></div>
-                      <div className="absolute inset-0 bg-gradient-to-bl from-white/20 to-transparent rounded-full 
-                        transition-all duration-500 animate-pulse-slow"></div>
+                      {/* Overlay gradients with reduced opacity */}
+                      <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-purple-500/5 rounded-full 
+                        opacity-40 group-hover:opacity-60 transition-all duration-500"></div>
+                      <div className="absolute inset-0 bg-gradient-to-bl from-white/10 to-transparent rounded-full 
+                        transition-all duration-500 animate-pulse-very-subtle"></div>
                     </div>
 
-                    {/* Text container - stays properly aligned inside the circle */}
-                    <div className="text-center mt-6 transition-all duration-500 group-hover:scale-105"
-                      style={{ transform: "translateZ(10px)" }}>
-                      <h3 className="text-xl font-bold text-gray-800 mb-2 drop-shadow-lg">
+                    {/* Text container - subtle scale effect */}
+                    <div className="text-center mt-6 transition-all duration-500 group-hover:scale-102"
+                      style={{ transform: "translateZ(5px)" }}>
+                      <h3 className="text-xl font-bold text-gray-800 mb-2 drop-shadow-sm">
                         {project.title}
                       </h3>
                       <div className="flex justify-center items-center">
@@ -164,12 +164,12 @@ const Projects = () => {
                       </div>
                     </div>
 
-                    {/* Hover glow effect */}
-                    <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-70 
+                    {/* Hover glow effect with reduced opacity */}
+                    <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-40 
                       transition-opacity duration-700 pointer-events-none"
                       style={{
-                        background: "radial-gradient(circle at center, rgba(191, 219, 254, 0.8) 0%, rgba(191, 219, 254, 0) 70%)",
-                        transform: "translateZ(5px)",
+                        background: "radial-gradient(circle at center, rgba(191, 219, 254, 0.6) 0%, rgba(191, 219, 254, 0) 70%)",
+                        transform: "translateZ(2px)",
                       }}>
                     </div>
                   </div>
@@ -183,24 +183,24 @@ const Projects = () => {
           <button
             onClick={prevProject}
             className="p-3 bg-gradient-to-br from-blue-50 to-white rounded-full opacity-90 hover:opacity-100 
-              shadow-lg hover:shadow-blue-300 border border-blue-100 transform hover:scale-125 
-              hover:rotate-6 transition-all duration-300 animate-pulse-slow"
+              shadow-md hover:shadow-blue-200 border border-blue-100 transform hover:scale-110 
+              hover:rotate-2 transition-all duration-300 animate-pulse-very-subtle"
             style={{
-              boxShadow: "0 15px 35px -5px rgba(59, 130, 246, 0.4)",
+              boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.25)",
             }}
           >
-            <img src={assets?.left_arrow} alt="Prev" className="w-6 h-6 drop-shadow-md" />
+            <img src={assets?.left_arrow} alt="Prev" className="w-6 h-6 drop-shadow-sm" />
           </button>
           <button
             onClick={nextProject}
             className="p-3 bg-gradient-to-br from-blue-50 to-white rounded-full opacity-90 hover:opacity-100 
-              shadow-lg hover:shadow-blue-300 border border-blue-100 transform hover:scale-125 
-              hover:rotate-6 transition-all duration-300 animate-pulse-slow"
+              shadow-md hover:shadow-blue-200 border border-blue-100 transform hover:scale-110 
+              hover:rotate-2 transition-all duration-300 animate-pulse-very-subtle"
             style={{
-              boxShadow: "0 15px 35px -5px rgba(59, 130, 246, 0.4)",
+              boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.25)",
             }}
           >
-            <img src={assets?.right_arrow} alt="Next" className="w-6 h-6 drop-shadow-md" />
+            <img src={assets?.right_arrow} alt="Next" className="w-6 h-6 drop-shadow-sm" />
           </button>
         </div>
       </div>
@@ -213,44 +213,44 @@ const Projects = () => {
         </p>
       </div>
 
-      {/* Enhanced CSS animations */}
+      {/* Updated CSS animations to be more subtle */}
       <style jsx>{`
         @keyframes float {
           0% {
             transform: translateY(0px) rotate(0deg);
           }
           25% {
-            transform: translateY(-10px) rotate(1deg);
+            transform: translateY(-5px) rotate(0.5deg);
           }
           50% {
-            transform: translateY(-15px) rotate(0deg);
+            transform: translateY(-7px) rotate(0deg);
           }
           75% {
-            transform: translateY(-10px) rotate(-1deg);
+            transform: translateY(-5px) rotate(-0.5deg);
           }
           100% {
             transform: translateY(0px) rotate(0deg);
           }
         }
         
-        @keyframes pulse-medium {
+        @keyframes pulse-subtle {
           0% {
-            transform: translateZ(20px) scale(1);
+            transform: translateZ(10px) scale(1);
           }
           50% {
-            transform: translateZ(30px) scale(1.08);
+            transform: translateZ(12px) scale(1.03);
           }
           100% {
-            transform: translateZ(20px) scale(1);
+            transform: translateZ(10px) scale(1);
           }
         }
         
-        @keyframes pulse-subtle {
+        @keyframes pulse-very-subtle {
           0% {
             opacity: 0.7;
           }
           50% {
-            opacity: 0.9;
+            opacity: 0.8;
           }
           100% {
             opacity: 0.7;
@@ -260,44 +260,48 @@ const Projects = () => {
         @keyframes pulse-slow {
           0% {
             transform: scale(1);
-            opacity: 0.9;
+            opacity: 0.8;
           }
           50% {
-            transform: scale(1.05);
-            opacity: 1;
+            transform: scale(1.02);
+            opacity: 0.9;
           }
           100% {
             transform: scale(1);
-            opacity: 0.9;
+            opacity: 0.8;
           }
         }
         
         .floating-card {
-          animation: float 6s ease-in-out infinite;
-        }
-        
-        .animate-pulse-medium {
-          animation: pulse-medium 5s ease-in-out infinite;
+          animation: float 8s ease-in-out infinite;
         }
         
         .animate-pulse-subtle {
-          animation: pulse-subtle 4s ease-in-out infinite;
+          animation: pulse-subtle 6s ease-in-out infinite;
+        }
+        
+        .animate-pulse-very-subtle {
+          animation: pulse-very-subtle 6s ease-in-out infinite;
         }
         
         .animate-pulse-slow {
-          animation: pulse-slow 6s ease-in-out infinite;
+          animation: pulse-slow 8s ease-in-out infinite;
         }
         
         .perspective-3d {
-          perspective: 1500px;
+          perspective: 1000px;
         }
         
-        .border-6 {
-          border-width: 6px;
+        .border-4 {
+          border-width: 4px;
         }
         
-        .group-hover\:scale-115:hover {
-          transform: translateZ(20px) scale(1.15);
+        .group-hover\:scale-105:hover {
+          transform: translateZ(10px) scale(1.05);
+        }
+        
+        .group-hover\:scale-102:hover {
+          transform: translateZ(5px) scale(1.02);
         }
       `}</style>
     </div>
