@@ -197,7 +197,14 @@ const About = () => {
   return (
     <div 
       ref={containerRef}
-      className="relative min-h-screen w-full overflow-hidden bg-gradient-to-b from-indigo-100 via-white to-indigo-50"
+      className="relative min-h-screen w-full overflow-hidden"
+      style={{ 
+        backgroundImage: `url(${assets.bg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed'
+      }}
       id="About"
     >
       {/* Simplified background with will-change optimization */}
@@ -360,7 +367,7 @@ const About = () => {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="text-3xl md:text-5xl font-bold text-center text-transparent h-20 bg-clip-text bg-gradient-to-r from-teal-700 via-green-600 to-emerald-700 mb-12"
     >
-      Hey Farmer, Let’s Feed the Land!
+      Hey Farmer, Let's Feed the Land!
     </motion.h2>
     
     <div className="flex flex-col lg:flex-row items-center gap-10">
@@ -431,7 +438,7 @@ const About = () => {
           
           className="z-10 px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg shadow-lg flex items-center gap-2 transition-all duration-300 "
         >
-          <span>Farmers’ Portal</span>
+          <span>Farmers' Portal</span>
           <span
             className="text-xl"
           >
