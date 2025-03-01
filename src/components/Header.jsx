@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
+import SignIn from './SignIn';
 
 const images = [
   '/header_img7.webp',
@@ -10,9 +11,10 @@ const images = [
 ];
 
 const Header = () => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   const [currentImage, setCurrentImage] = useState(0);
   const [fade, setFade] = useState(true);
+  const [showSignIn, setShowSignIn] = useState(false); // State to control SignIn visibility
 
   // Automatically cycle through images every 5 seconds
   useEffect(() => {
@@ -27,6 +29,20 @@ const Header = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Prevent scrolling when SignIn is active
+  useEffect(() => {
+    if (showSignIn) {
+      document.body.style.overflow = 'hidden'; // Disable scrolling
+    } else {
+      document.body.style.overflow = 'auto'; // Enable scrolling
+    }
+
+    // Cleanup function to re-enable scrolling when the component unmounts
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [showSignIn]);
+
   const handleImageChange = (index) => {
     setFade(false);
     setTimeout(() => {
@@ -35,9 +51,13 @@ const Header = () => {
     }, 300);
   };
 
+  // Function to toggle SignIn visibility
+  const toggleSignIn = () => {
+    setShowSignIn(!showSignIn);
+  };
+
   return (
     <div className='min-h-screen w-full overflow-hidden relative' id='Header'>
-
       <div className='absolute top-0 left-0 h-full w-full'>
         {images.map((image, index) => (
           <div
@@ -48,26 +68,29 @@ const Header = () => {
         ))}
         <div className='absolute top-0 left-0 h-full w-full bg-black/50'></div>
       </div>
+      
       <div className='relative z-10'>
-        <Navbar />
-        <div className='container mx-auto py-4 px-6 md:px-20 lg:px-32 text-white flex items-center min-h-screen'>
-          <div className='bg-transparent p-10 rounded-lg max-w-lg text-left'>
-
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold pt-10">
-  <span className="inline-block animate-pulse">TOGETHER WE</span>
-  <span className="inline-block animate-none text-red-500">FEED</span>
-  <span className="inline-block animate-pulse">THE NEED</span>
-</h2>
-            <p className='mt-6 text-lg italic'>"Every day, food is wasted while many go hungry. Together, we can change that. Whether giving or receiving, you’re part of a movement that ensures no meal is wasted and no one is left behind."</p>
-            <div className='space-x-6 mt-10 flex'>
-              <a href='#Join_Us' className='bg-red-500 px-8 py-3 rounded font-bold text-white hover:bg-red-600'>Talk To Us</a>
-              <a onClick={() => navigate('/auth')}  className='bg-white text-black px-8 py-3 rounded font-bold hover:bg-gray-200'>Get Involved</a>
+        <Navbar toggleSignIn={toggleSignIn} /> {/* Pass toggleSignIn to Navbar */}
+        {showSignIn && <SignIn />} {/* Conditionally render SignIn */}
+        
+        {/* Conditionally render the text content */}
+        {!showSignIn && (
+          <div className='container mx-auto py-4 px-6 md:px-20 lg:px-32 text-white flex items-center min-h-screen'>
+            <div className='bg-transparent p-10 rounded-lg max-w-lg text-left'>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold pt-10">
+                <span className="inline-block animate-pulse">TOGETHER WE</span>
+                <span className="inline-block animate-none text-red-500">FEED</span>
+                <span className="inline-block animate-pulse">THE NEED</span>
+              </h2>
+              <p className='mt-6 text-lg italic'>"Every day, food is wasted while many go hungry. Together, we can change that. Whether giving or receiving, you’re part of a movement that ensures no meal is wasted and no one is left behind."</p>
+              <div className='space-x-6 mt-10 flex'>
+                <a href='#Join_Us' className='bg-red-500 px-8 py-3 rounded font-bold text-white hover:bg-red-600'>Talk To Us</a>
+                <a onClick={toggleSignIn} className='bg-white text-black px-8 py-3 rounded font-bold hover:bg-gray-200'>Get Involved</a>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
-
-      
     </div>
   );
 };
