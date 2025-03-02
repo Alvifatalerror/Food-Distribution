@@ -51,18 +51,18 @@ const Auth2 = () => {
         }
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         console.log('User registered:', userCredential.user);
-        alert('User registered successfully!');
+        console.log('User registered successfully!');
       } else {
         // Handle Login
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         console.log('User logged in:', userCredential.user);
-        alert('Login successful!');
+        console.log('Login successful!');
       }
 
       // Redirect to the dashboard with a flag to indicate this is from Auth2
       navigate('/dashboard', { state: { fromAuth2: true } });
     } catch (error) {
-      alert(error.message);
+      console.log(error.message);
     }
   };
 

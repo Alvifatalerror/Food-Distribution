@@ -80,7 +80,7 @@ const MainContent = ({
       )}
 
       {(activeView === "addDonation" || activeView === "addRequest") && !fromAuth2 && (
-        <div className="bg-white p-4 rounded shadow-md mt-4">
+        <div className="bg-white p-4 rounded shadow-md mt-4 px-20">
           <h3 className="text-xl font-bold mb-2">{activeView === "addDonation" ? "Add Donation" : "Add Request"}</h3>
           <form onSubmit={handleSubmit}>
             {["name", "email", "location", "timePeriod", "description"].map((field) => (
@@ -100,9 +100,11 @@ const MainContent = ({
               <option value="individual">Individual</option>
               <option value="orphanage">Orphanage</option>
             </select>
-            <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <div className="flex justify-end">
+            <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ">
               Submit
             </button>
+            </div>
           </form>
         </div>
       )}

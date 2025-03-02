@@ -64,7 +64,7 @@ const WorkCard = memo(({ item, index, inView }) => (
           </div>
         </div>
         
-        <p className="text-indigo-800 text-xl leading-relaxed font-medium">{item.description}</p>
+        <p className="text-slate-800 text-xl leading-relaxed font-medium">{item.description}</p>
       </div>
     </div>
   </motion.div>
@@ -248,10 +248,10 @@ const About = () => {
           className="text-center"
         >
           <div className="relative inline-block">
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-4">
+            <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-4">
               <span className="relative">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-800 via-indigo-800 to-slate-700">
-                  ABOUT OUR CAUSE
+                  About Our Cause
                 </span>
               </span>
             </h1>
@@ -269,7 +269,7 @@ const About = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
             viewport={{ once: false, amount: 0.3 }}
-            className="mx-auto max-w-2xl text-lg md:text-xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-700 via-indigo-800 to-indigo-700 mt-8 leading-relaxed font-light italic"
+            className="mx-auto max-w-2xl text-lg md:text-xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-700 via-indigo-800 to-indigo-700 leading-relaxed font-light italic"
           >
             "Our Mission: Reducing Food Waste, Fighting Hunger, and Promoting Sustainability."
           </motion.p>
@@ -334,7 +334,7 @@ const About = () => {
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-5xl font-bold text-center h-16 text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-indigo-800 mb-16"
         >
-          Bridging  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 via-green-600 to-teal-600">Hunger and Hope</span>
+          Bridging  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-800 to-slate-800">Hunger and Hope</span>
         </motion.h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3  gap-8 max-w-6xl mx-auto">
@@ -367,7 +367,7 @@ const About = () => {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="text-3xl md:text-5xl font-bold text-center text-transparent h-20 bg-clip-text bg-gradient-to-r from-teal-700 via-green-600 to-emerald-700 mb-12"
     >
-      Hey Farmer, Let's Feed the Land!
+      Sowing Sustainability Together
     </motion.h2>
     
     <div className="flex flex-col lg:flex-row items-center gap-10">
@@ -388,7 +388,8 @@ const About = () => {
           transition={{ type: "spring", stiffness: 280, damping: 18 }}
         >
           <div className="absolute inset-0 bg-green-50 flex items-center justify-center text-green-600">
-            <img src={assets.waste2_img} alt="Food Waste" className="w-full h-full object-cover" />
+            <img src={assets.restaurant_waste} alt="" className="w-1/2 h-full object-cover " />
+            <img src={assets.waste2_img} alt="Food Waste" className="w-1/2 h-full object-cover" />
           </div>
         </motion.div>
       </motion.div>
@@ -402,11 +403,8 @@ const About = () => {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="lg:w-1/2"
       >
-        <p className="text-indigo-900 text-xl text-center leading-relaxed mb-6">
-          In addition to tackling food insecurity, we also strive to reduce food waste's
-          environmental impact. Our platform connects restaurants with local farmers who can
-          repurpose food waste for composting or as animal feed. By doing so, we contribute to
-          a circular economy that benefits both people and the planet.
+        <p className="text-slate-900 text-xl text-center leading-relaxed mb-6">
+          In addition to tackling food insecurity, we also strive to reduce food waste's environmental impact. Our platform enables restaurants to efficiently share surplus food, allowing local farmers to repurpose it for composting or animal feed. By bridging this connection, we help restaurants minimize waste while supporting sustainable farming, creating a circular economy that benefits both people and the planet.
         </p>
         
         {/* Tags with Hover Fix */}
@@ -433,19 +431,7 @@ const About = () => {
         
         {/* Button with Hover Fix */}
         
-        <button
-          onClick={() => navigate("/auth2")} 
-          
-          className="z-10 px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg shadow-lg flex items-center gap-2 transition-all duration-300 "
-        >
-          <span>Farmers' Portal</span>
-          <span
-            className="text-xl"
-          >
-            🌱
-          </span>
-          <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg></span>
-        </button>
+       
       </motion.div>
     </div>
   </div>
@@ -453,7 +439,7 @@ const About = () => {
 
 
       {/* Join mission call to action - UPDATED to match the whiteish theme */}
-      <div className="relative py-32 px-6 sm:px-12 overflow-hidden bg-white">
+      <div className="relative py-32 px-6 sm:px-12 overflow-hidden  bg-white">
         {/* Changed background to white with subtle indigo overlay */}
         <motion.div 
           className="absolute inset-0 bg-indigo-50/30 will-change-opacity"
@@ -529,26 +515,7 @@ const About = () => {
             our mission to make food accessible for all while supporting sustainability efforts that
             help our planet.
           </motion.p>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-slate-700 to-indigo-700 rounded-full text-white font-bold text-lg shadow-lg"
-            >
-              Get Involved
-            </motion.button>
-          </motion.div>
         </motion.div>
-      </div>
-      
-      {/* Thank you section - with reoccurring animations */}
-      <div className="relative py-16 px-6 sm:px-12 bg-indigo-50">
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
@@ -557,40 +524,8 @@ const About = () => {
             transition={{ duration: 0.6 }}
             className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-800 to-slate-700 mb-4"
           >
-            Thank you for being part of the solution!
+            "Thank you for being part of the solution"
           </motion.h2>
-          
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-indigo-800 mb-12"
-          >
-            Your involvement, whether as a donor, recipient, or supporter, helps us create a world where 
-            food waste is minimized and hunger is addressed through compassionate community action.
-          </motion.p>
-          
-          <div className="flex flex-wrap justify-center gap-4">
-            {['Donate Food', 'Volunteer', 'Partner with Us'].map((label, i) => (
-              <motion.button
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.5 }}
-                transition={{ duration: 0.5, delay: 0.3 + (i * 0.1) }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`px-6 py-3 text-white rounded-lg transition font-medium shadow-md ${
-                  i === 0 ? 'bg-gradient-to-r from-green-700 to-emerald-600' : 
-                  i === 1 ? 'bg-gradient-to-r from-blue-700 to-indigo-600' : 
-                  'bg-gradient-to-r from-amber-700 to-yellow-600'
-                }`}
-              >
-                {label}
-              </motion.button>
-            ))}
-          </div>
         </div>
       </div>
     </div>
