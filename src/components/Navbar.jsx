@@ -1,53 +1,144 @@
-import React, { useEffect, useState } from 'react'
-import {assets} from "../assets/assets"
-
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { assets } from "../assets/assets";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const [showMobileMenu,setshowMobileMenu] = useState(false)
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false); // State for dropdown visibility
 
+  useEffect(() => {
+    if (showMobileMenu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showMobileMenu]);
 
-useEffect(()=>{
-  if(showMobileMenu){
-    document.body.style.overflow = 'hidden';
-  }else{
-    document.body.style.overflow = 'auto';
-  }
-  return()=>{
-    document.body.style.overflow = 'auto';
+  // Handle dropdown option click
+  const handleDropdownOptionClick = (path) => {
+    navigate(path); // Navigate to the specified path
+    setShowDropdown(false); // Close the dropdown
   };
-},[showMobileMenu])
-
 
   return (
-    <div className='absolute top-0 left-0 w-full z-10 bg-transparent bg-opacity-50'>
-      <div className='container mx-auto flex justify-between items-center py-4 px-6 md:px-20 lg:px-32'>
-        <img src={assets.logo} alt="" className='w-3xs'/>
-        <ul className='hidden md:flex gap-7 text-white font-semibold'>
-          <a href="#Header" className='cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>Home</a>
-          <a href="#About" className='cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>About</a>
-          <a href="#Community" className='cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>Community</a>
-          <a href="#Join_Us" className='cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all'>Join Us</a>
+    <div className="absolute top-0 left-0 w-full z-10 bg-transparent bg-opacity-50">
+      <div className="container mx-auto flex justify-between items-center py-4 px-6 md:px-20 lg:px-32">
+        <img src={assets.logo} alt="" className="w-3xs" />
+        <ul className="hidden md:flex gap-7 text-white font-semibold">
+          <a
+            href="#Header"
+            className="cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all"
+          >
+            Home
+          </a>
+          <a
+            href="#About"
+            className="cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all"
+          >
+            About
+          </a>
+          <a
+            href="#Community"
+            className="cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all"
+          >
+            Community
+          </a>
+          <a
+            href="#Join_Us"
+            className="cursor-pointer hover:text-red-400 border-b-2 border-transparent hover:border-red-400 transition-all"
+          >
+            Join Us
+          </a>
         </ul>
-        <button className='hidden md:block bg-red-500 px-6 py-2 rounded-full text-white font-semibold hover:bg-red-600 transition-all' onClick={() => navigate('/auth')}>Sign In</button>
-        <img onClick={()=>setshowMobileMenu(true)} src={assets.menu_icon} className='md:hidden w-7 cursor-pointer' alt="" />
-      </div>
-      {/* -----------mobile-menu----------- */}
-      <div className={`md:hidden ${showMobileMenu ?'fixed w-full':'h-0 w-0'}  right-0 top-0 bottom-0 overflow-hidden bg-white transition-all`}>
-        <div className='flex justify-end p-6 cursor-pointer'>
-          <img onClick={()=>setshowMobileMenu(false)} src={assets.cross_icon} className='w-6' alt="" />
-        </div>
-        <ul className='flex flex-col items-center gap-2 mt-5 px-5 text-lg font-medium'>
-          <a onClick={()=>setshowMobileMenu(false)} href="#Header" className='px-4 py-3 rounded-full inline-block text-black hover:bg-red-100'>Home</a>
-          <a onClick={()=>setshowMobileMenu(false)} href="#About" className='px-4 py-3 rounded-full inline-block text-black hover:bg-red-100'>About</a>
-          <a onClick={()=>setshowMobileMenu(false)} href="#Community" className='px-4 py-3 rounded-full inline-block text-black hover:bg-red-100'>Community</a>
-          <a onClick={()=>setshowMobileMenu(false)} href="#Join_Us" className='px-4 py-3 rounded-full inline-block text-black hover:bg-red-100'>Join Us</a>
-        </ul>
-      </div>
-      
-    </div>
-  )
-}
 
-export default Navbar
+        {/* Sign In Button with Dropdown */}
+        <div className="hidden md:block relative">
+          <button
+            className="bg-red-500 px-6 py-2 rounded-full text-white font-semibold hover:bg-red-600 transition-all"
+            onClick={() => setShowDropdown(!showDropdown)} // Toggle dropdown
+          >
+            Sign In
+          </button>
+
+          {/* Dropdown Menu */}
+          {showDropdown && (
+            <div className="absolute right-0 mt-2 w-48 bg-white rounded-full shadow-lg z-20">
+              <button
+                className="block w-full px-4 py-2 text-left text-black hover:bg-red-100 rounded-full"
+                onClick={() => handleDropdownOptionClick("/auth")} // Redirect to /auth
+              >
+                Option 1
+              </button>
+              <button
+                className="block w-full px-4 py-2 text-left text-black hover:bg-red-100 rounded-full"
+                onClick={() => handleDropdownOptionClick("/profile")} // Redirect to /profile
+              >
+                Option 2
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Mobile Menu Icon */}
+        <img
+          onClick={() => setShowMobileMenu(true)}
+          src={assets.menu_icon}
+          className="md:hidden w-7 cursor-pointer"
+          alt=""
+        />
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`md:hidden ${
+          showMobileMenu ? "fixed w-full" : "h-0 w-0"
+        } right-0 top-0 bottom-0 overflow-hidden bg-white transition-all`}
+      >
+        <div className="flex justify-end p-6 cursor-pointer">
+          <img
+            onClick={() => setShowMobileMenu(false)}
+            src={assets.cross_icon}
+            className="w-6"
+            alt=""
+          />
+        </div>
+        <ul className="flex flex-col items-center gap-2 mt-5 px-5 text-lg font-medium">
+          <a
+            onClick={() => setShowMobileMenu(false)}
+            href="#Header"
+            className="px-4 py-3 rounded-full inline-block text-black hover:bg-red-100"
+          >
+            Home
+          </a>
+          <a
+            onClick={() => setShowMobileMenu(false)}
+            href="#About"
+            className="px-4 py-3 rounded-full inline-block text-black hover:bg-red-100"
+          >
+            About
+          </a>
+          <a
+            onClick={() => setShowMobileMenu(false)}
+            href="#Community"
+            className="px-4 py-3 rounded-full inline-block text-black hover:bg-red-100"
+          >
+            Community
+          </a>
+          <a
+            onClick={() => setShowMobileMenu(false)}
+            href="#Join_Us"
+            className="px-4 py-3 rounded-full inline-block text-black hover:bg-red-100"
+          >
+            Join Us
+          </a>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;
