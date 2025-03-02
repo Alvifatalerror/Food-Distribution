@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { assets } from "../assets/assets";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import {assets} from "../assets/assets"
 
-const Navbar = () => {
+import { useNavigate } from 'react-router-dom';
+
+const Navbar = ({toggleSignIn}) => {
   const navigate = useNavigate();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false); // State for dropdown visibility
@@ -54,42 +55,9 @@ const Navbar = () => {
             Join Us
           </a>
         </ul>
-
-        {/* Sign In Button with Dropdown */}
-        <div className="hidden md:block relative">
-          <button
-            className="bg-red-500 px-6 py-2 rounded-full text-white font-semibold hover:bg-red-600 transition-all"
-            onClick={() => setShowDropdown(!showDropdown)} // Toggle dropdown
-          >
-            Sign In
-          </button>
-
-          {/* Dropdown Menu */}
-          {showDropdown && (
-            <div className="absolute right-0 mt-2 w-48 bg-white rounded-full shadow-lg z-20">
-              <button
-                className="block w-full px-4 py-2 text-left text-black hover:bg-red-100 rounded-full"
-                onClick={() => handleDropdownOptionClick("/auth")} // Redirect to /auth
-              >
-                Option 1
-              </button>
-              <button
-                className="block w-full px-4 py-2 text-left text-black hover:bg-red-100 rounded-full"
-                onClick={() => handleDropdownOptionClick("/profile")} // Redirect to /profile
-              >
-                Option 2
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* Mobile Menu Icon */}
-        <img
-          onClick={() => setShowMobileMenu(true)}
-          src={assets.menu_icon}
-          className="md:hidden w-7 cursor-pointer"
-          alt=""
-        />
+        <button className='hidden md:block bg-red-500 px-6 py-2 rounded-full text-white font-semibold hover:bg-red-600 transition-all' onClick={toggleSignIn} >Sign In</button>
+        {/* onClick={() => navigate('/auth')} */}
+        <img onClick={()=>setshowMobileMenu(true)} src={assets.menu_icon} className='md:hidden w-7 cursor-pointer' alt="" />
       </div>
 
       {/* Mobile Menu */}
