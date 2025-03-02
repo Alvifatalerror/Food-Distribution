@@ -4,10 +4,10 @@ import Navbar from './Navbar';
 import SignIn from './SignIn';
 
 const images = [
-  '/header_img7.webp',
-  '/header_img4.webp',
-  '/header_img5.webp',
-  '/header_img6.webp',
+  "/header_img7.webp",
+  "/header_img4.webp",
+  "/header_img5.webp",
+  "/header_img6.webp",
 ];
 
 const Header = () => {
@@ -62,11 +62,13 @@ const Header = () => {
         {images.map((image, index) => (
           <div
             key={index}
-            className={`h-full w-full bg-cover bg-center absolute top-0 left-0 transition-opacity duration-2000 ease-in-out ${currentImage === index ? 'opacity-100' : 'opacity-0'}`}
+            className={`h-full w-full bg-cover bg-center absolute top-0 left-0 transition-opacity duration-2000 ease-in-out ${
+              currentImage === index ? "opacity-100" : "opacity-0"
+            }`}
             style={{ backgroundImage: `url(${image})` }}
           ></div>
         ))}
-        <div className='absolute top-0 left-0 h-full w-full bg-black/50'></div>
+        <div className="absolute top-0 left-0 h-full w-full bg-black/50"></div>
       </div>
       
       <div className='relative z-10'>
