@@ -56,7 +56,7 @@ const AuthForm = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert("Passwords do not match!");
+      console.log("Passwords do not match!");
       return;
     }
     try {
@@ -81,10 +81,10 @@ const AuthForm = () => {
         organization: organization,
       });
 
-      alert('User registered successfully!');
+      console.log('User registered successfully!');
       navigate('/dashboard');
     } catch (error) {
-      alert(error.message);
+      console.log(error.message);
     }
   };
 
@@ -99,10 +99,10 @@ const AuthForm = () => {
       }
 
       await signInWithEmailAndPassword(auth, email, password);
-      alert('Login successful!');
+      console.log('Login successful!');
       navigate('/dashboard');
     } catch (error) {
-      alert(error.message);
+      console.log(error.message);
     }
   };
 
@@ -134,7 +134,7 @@ const AuthForm = () => {
       }
       navigate('/dashboard');
     } catch (error) {
-      alert(error.message);
+      console.log(error.message);
     }
   };
 

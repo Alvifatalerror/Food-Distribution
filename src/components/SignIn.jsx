@@ -8,15 +8,15 @@ const SignIn = () => {
   return (
     <div className='fixed inset-0 flex items-center justify-center bg-black/50 p-4'>
       {/* Main container with responsive width and height */}
-      <div className='backdrop-blur-md max-w-[95%] md:max-w-[60%] p-6 md:p-8 shadow-lg rounded-lg overflow-y-auto'>
+      <div className='backdrop-blur-xs max-w-[95%] md:max-w-[60%] p-6 md:p-8 shadow-lg rounded-lg overflow-y-auto'>
         {/* Flex container for inner sections */}
         <div className='flex flex-col md:flex-row justify-around gap-6 md:gap-8'>
           {/* Waste section */}
           <div id='Waste' className='w-full md:w-[45%] rounded-xl p-6 md:p-8 bg-black/20 flex flex-col justify-between'>
             <div>
-              <h1 className='text-3xl font-bold text-center text-green-500 mb-6'>Farmers’ Green Portal</h1>
+              <h1 className='text-3xl font-bold text-center text-green-500 mb-6'>Green Portal</h1>
               <p className='text-center text-white text-base md:text-lg mb-6 font-light'>
-                Farmers’ Green Portal connects you with surplus food from restaurants, allowing you to collect and repurpose food waste for composting or animal feed. Click to access sustainable resources!
+                Green Portal connects you with surplus food from restaurants, allowing you to collect and repurpose food waste for composting or animal feed. Click to access sustainable resources!
               </p>
             </div>
 
@@ -26,7 +26,7 @@ const SignIn = () => {
                 onClick={() => navigate('./auth2')}
                 className='border border-green-500 hover:border-white bg-green-500 hover:bg-white w-full h-12 rounded-md text-white hover:text-green-500 flex items-center justify-center gap-2 transition-colors duration-300'
               >
-                Farmers’ Collection Hub <FaArrowRight />
+                 Food Waste Exchange Hub<FaArrowRight />
               </button>
             </div>
           </div>
