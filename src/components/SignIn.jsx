@@ -1,59 +1,78 @@
-import React from 'react';
-import { FaArrowRight } from 'react-icons/fa';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const SignIn = () => {
+const SignIn = ({ onLogin }) => {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    role: 'user'
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // In a real app, you would validate credentials here
+    onLogin(formData.role, formData.email.split('@')[0]);
+    navigate('/dashboard');
+  };
 
   return (
-    <div className='fixed inset-0 flex items-center justify-center bg-black/50 p-4'>
-      {/* Main container with responsive width and height */}
-      <div className='backdrop-blur-xs max-w-[95%] md:max-w-[60%] p-6 md:p-8 shadow-lg rounded-lg overflow-y-auto'>
-        {/* Flex container for inner sections */}
-        <div className='flex flex-col md:flex-row justify-around gap-6 md:gap-8'>
-          {/* Waste section */}
-          <div id='Waste' className='w-full md:w-[45%] rounded-xl p-6 md:p-8 bg-black/20 flex flex-col justify-between'>
-            <div>
-              <h1 className='text-3xl font-bold text-center text-green-500 mb-6'>Green Portal</h1>
-              <p className='text-center text-white text-base md:text-lg mb-6 font-light'>
-                Green Portal connects you with surplus food from restaurants, allowing you to collect and repurpose food waste for composting or animal feed. Click to access sustainable resources!
-              </p>
-            </div>
-
-            <div className='flex justify-center items-center'>
-              {/* Light green button */}
-              <button
-                onClick={() => navigate('./auth2')}
-                className='border border-green-500 hover:border-white bg-green-500 hover:bg-white w-full h-12 rounded-md text-white hover:text-green-500 flex items-center justify-center gap-2 transition-colors duration-300'
-              >
-                 Food Waste Exchange Hub<FaArrowRight />
-              </button>
-            </div>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 to-blue-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-96">
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Sign In</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-gray-700 mb-2">Email</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              required
+            />
           </div>
-
-          {/* Food section */}
-          <div id='Food' className='w-full md:w-[45%] rounded-xl p-6 md:p-8 bg-black/20 flex flex-col justify-between'>
-            <div>
-              <h1 className='text-3xl font-bold text-center text-red-500 mb-6'>Community Food Hub</h1>
-              <p className='text-center text-white text-base md:text-lg mb-6 font-light'>
-                Community Food Hub bridges the gap between food donors and those in need, ensuring surplus food is shared instead of wasted. Whether you're donating or requesting a meal, click to join the movement!
-              </p>
-            </div>
-
-            <div className='flex justify-center items-center'>
-              {/* Red button */}
-              <button
-                onClick={() => navigate('./auth')}
-                className='border border-red-500 hover:border-white bg-red-500 hover:bg-white w-full h-12 rounded-md text-white hover:text-red-500 flex items-center justify-center gap-2 transition-colors duration-300'
-              >
-                Share or Receive Food <FaArrowRight />
-              </button>
-            </div>
+          <div>
+            <label className="block text-gray-700 mb-2">Password</label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              required
+            />
           </div>
-        </div>
+          <div>
+            <label className="block text-gray-700 mb-2">Role</label>
+            <select
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+            >
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <button
+            type="submit"
+            className="w-full py-2 px-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-md hover:from-purple-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+          >
+            Sign In
+          </button>
+        </form>
       </div>
     </div>
   );
 };
 
-export default SignIn;
+export default SignIn; 

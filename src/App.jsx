@@ -1,37 +1,52 @@
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import About from './components/About';
-import Projects from './components/Projects';
-
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import AuthForm from './components/AuthForm';
+import Home from './components/Home';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 import Dashboard from './components/Dashboard';
-import Auth2 from './components/Auth2';
-
-
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userRole, setUserRole] = useState('guest');
+  const [userName, setUserName] = useState('');
+
+  const handleLogin = (role, name = '') => {
+    setIsAuthenticated(true);
+    setUserRole(role);
+    setUserName(name || 'User');
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setUserRole('guest');
+    setUserName('');
+  };
+
   return (
     <Router>
       <Routes>
-        {/* Home Page with all components */}
+        <Route path="/" element={<Home />} />
         <Route 
-          path="/" 
-          element={
-            <>
-              <Header  />
-              <About />
-              <Projects  />
-              <Contact />
-              <Footer />
-            </>
-          } 
+          path="/signin" 
+          element={<SignIn onLogin={handleLogin} />} 
         />
-        {/* Auth Page (Login/Signup) - Only this component is shown */}
-        <Route path='/auth2' element={<Auth2/>}/>
-        <Route path="/auth" element={<AuthForm />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route 
+          path="/signup" 
+          element={<SignUp onLogin={handleLogin} />} 
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Dashboard 
+                userRole={userRole}
+                userName={userName}
+                onLogout={handleLogout}
+              />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );
