@@ -161,7 +161,7 @@ const MainContent = ({
                   </div>
                   <p className="text-gray-700 bg-gray-50 p-3 rounded-lg">{member.description}</p>
                   <div className="flex gap-2 mt-4">
-                    {activeView === "requesters" && userRole === "admin" && member.status === "pending" ? (
+                    {activeView === "requesters" && userRole === "admin" && member.status === "pending" && (
                       <>
                         <button
                           onClick={() => onAccept(member, "request")}
@@ -176,15 +176,14 @@ const MainContent = ({
                           Deny
                         </button>
                       </>
-                    ) : (
-                      activeView === "donators" && (
-                        <button
-                          onClick={() => onAccept(member, "donation")}
-                          className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white py-3 px-4 rounded-lg transition-all duration-300 font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-                        >
-                          Accept
-                        </button>
-                      )
+                    )}
+                    {activeView === "donators" && userRole === "admin" && (
+                      <button
+                        onClick={() => onAccept(member, "donation")}
+                        className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white py-3 px-4 rounded-lg transition-all duration-300 font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                      >
+                        Accept Donation
+                      </button>
                     )}
                   </div>
                 </div>

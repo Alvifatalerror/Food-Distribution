@@ -38,7 +38,7 @@ const Home = () => {
                   you can make a difference by donating your surplus food.
                 </p>
                 <Link 
-                  to="/signin" 
+                  to="/signin?role=donor" 
                   className="inline-block px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all"
                 >
                   Sign in as Donor
@@ -49,10 +49,10 @@ const Home = () => {
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">For Recipients</h3>
                 <p className="text-gray-600 text-lg mb-4">
                   Organizations and individuals in need can easily request food donations through 
-                  our platform, ensuring efficient distribution to those who need it most.
+                  our platform, ensuring efficient distribution.
                 </p>
                 <Link 
-                  to="/signin" 
+                  to="/signin?role=recipient" 
                   className="inline-block px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all"
                 >
                   Sign in as Recipient

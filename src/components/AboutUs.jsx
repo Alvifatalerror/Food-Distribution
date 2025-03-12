@@ -12,10 +12,10 @@ const AboutUs = ({ setActiveView }) => {
   return (
     <div className="space-y-8">
       <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
-        <h2 className="text-3xl font-bold text-gray-800 mb-6">About Nadafaim</h2>
+        <h2 className="text-3xl font-bold text-gray-800 mb-6">About Agape meal</h2>
         <div className="prose max-w-none text-gray-600">
           <p className="mb-4 text-lg">
-            Nadafaim is a non-profit initiative dedicated to bridging the gap between food abundance and scarcity in our community. 
+            Agape meal is a non-profit initiative dedicated to bridging the gap between food abundance and scarcity in our community. 
             We connect restaurants and food providers with those in need, ensuring that surplus food reaches the right hands.
           </p>
         </div>
